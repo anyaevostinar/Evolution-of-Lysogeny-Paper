@@ -1,0 +1,16 @@
+.DS_Store
+StatsConfig.cfg
+project_name
+source/.DS_Store
+web/symbulation.wasm
+web/symbulation.js
+symbulation
+symbulation.test
+*~
+*.data
+*.dat
+*.Rproj
+.Rhistory
+.Rproj.user
+*.gcno
+*.gcda
