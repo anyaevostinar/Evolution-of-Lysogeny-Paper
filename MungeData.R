@@ -7,6 +7,8 @@ library(stringr)
 library(Hmisc)
 library(tidyr)
 library(forcats)
+library(rlang)
+library(glue)
 
 #------------FUNCTIONS-----------
 get_treatment_val <- function(filename, treatment_name){
@@ -50,6 +52,33 @@ combine_time_data <- function(filenames, folder, treatments){
   all_data %>% mutate(SEED = as.factor(SEED))
 }
 
+combine_histogram_data <- function(time_data, separate_by, bins){
+  #collect initial data and pivot longer
+  initial_data <- time_data %>%
+    pivot_longer(
+      cols = starts_with("Hist_"),
+      names_to = "Histogram_bin",
+      values_to = "Bin_count"
+    ) %>%
+    mutate(Histogram_bin = as.factor(Histogram_bin))
+  
+  #collapse the bins
+  collapsed_data <- initial_data
+  collapsed_data$Histogram_factor <- dplyr::recode(collapsed_data$Histogram_bin, !!!bins)
+  
+  #aggregate the counts
+  collapsed_data <- collapsed_data %>%
+    mutate(count = Bin_count,
+           treatment = get(separate_by)) %>%
+    select(treatment, SEED, update, Histogram_factor, count)
+  
+  final_data <- aggregate(list(count = collapsed_data$count), 
+                          list(update = collapsed_data$update,
+                               treatment = collapsed_data$treatment,
+                               Histogram_bins = collapsed_data$Histogram_factor), sum)
+  final_data
+}
+
 #------------SETTINGS------------
 folder <- "Data/"
 all_filenames <- list.files(folder)
@@ -62,6 +91,30 @@ induction_filenames <- str_subset(all_filenames, "InductionChance")
 
 treatments <- c("PLR", "COI")
 
+induction_separate_by <- "PLR"
+induction_histogram_bins <- c(Hist_0.0 = "0 to 0.2 (Very low induction)",
+          Hist_0.1 = "0 to 0.2 (Very low induction)",
+          Hist_0.2 = "0.2 to 0.4 (Moderately low induction)",
+          Hist_0.3 = "0.2 to 0.4 (Moderately low induction)",
+          Hist_0.4 = "0.4 to 0.6 (Moderate induction)",
+          Hist_0.5 = "0.4 to 0.6 (Moderate induction)",
+          Hist_0.6 = "0.6 to 0.8 (Moderately high induction)",
+          Hist_0.7 = "0.6 to 0.8 (Moderately high induction)",
+          Hist_0.8 = "0.8 to 1.0 (Very high induction)",
+          Hist_0.9 = "0.8 to 1.0 (Very high induction)")
+
+lysis_separate_by <- "PLR"
+lysis_histogram_bins <- c(Hist_0.0 = "0 to 0.2 (Highly lysogenic)",
+                          Hist_0.1 = "0 to 0.2 (Highly lysogenic)",
+                          Hist_0.2 = "0.2 to 0.4 (Moderately lysogenic)",
+                          Hist_0.3 = "0.2 to 0.4 (Moderately lysogenic)",
+                          Hist_0.4 = "0.4 to 0.6 (Temperate)",
+                          Hist_0.5 = "0.4 to 0.6 (Temperate)",
+                          Hist_0.6 = "0.6 to 0.8 (Moderately lytic)",
+                          Hist_0.7 = "0.6 to 0.8 (Moderately lytic)",
+                          Hist_0.8 = "0.8 to 1.0 (Highly lytic)",
+                          Hist_0.9 = "0.8 to 1.0 (Highly lytic)")
+
 #-----------MUNGE DATA------------
 hostvals <- combine_time_data(hostval_filenames, folder, treatments)
 lysischances <- combine_time_data(lysischance_filenames, folder, treatments)
@@ -69,6 +122,8 @@ phagevals <- combine_time_data(phagevals_filenames, folder, treatments)
 freeliving <- combine_time_data(freeliving_filenames, folder, treatments)
 inductionchances <- combine_time_data(induction_filenames, folder, treatments)
 
+induction_histdata <- combine_histogram_data(inductionchances, induction_separate_by, induction_histogram_bins)
+lysis_histdata <- combine_histogram_data(lysischances, lysis_separate_by, lysis_histogram_bins)
 #----------CREATE GRAPHS-----------
 colors <- c("#B50142", "#CD0778", "#D506AD", "#E401E7", "#AB08FF","#7B1DFF", 
             "#5731FD", "#4755FF", "#5E8EFF", "#6FC4FE", "#86E9FE", "#96FFF7", 
@@ -185,5 +240,31 @@ inductionchances_plot <- ggplot(data=inductionchances,
   scale_fill_manual(values=colors)
 
 inductionchances_plot + facet_wrap(~COI)
+
+#Stacked histogram - Phage chance of lysis
+lysischance_stackedhistogram <- ggplot(lysis_histdata, 
+                                       aes(update, count)) + 
+  geom_area(aes(fill=Histogram_bins), position='stack') +
+  ylab("Count of Phage with Phenotype") + xlab("Evolutionary time (in updates)") +
+  scale_fill_manual("Chance of Lysis\n Phenotypes",values=tenhelix) +
+  facet_wrap(~treatment) + 
+  theme(panel.background = element_rect(fill='light grey', colour='black')) + 
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + 
+  guides(fill=FALSE) + guides(fill = guide_legend())
+
+lysischance_stackedhistogram
+
+#Stacked histogram - Phage chance of induction
+inductionchance_stackedhistogram <- ggplot(induction_histdata, 
+                                       aes(update, count)) + 
+  geom_area(aes(fill=Histogram_bins), position='stack') +
+  ylab("Count of Phage with Phenotype") + xlab("Evolutionary time (in updates)") +
+  scale_fill_manual("Chance of Induction\n Phenotypes",values=tenhelix) +
+  facet_wrap(~treatment) + 
+  theme(panel.background = element_rect(fill='light grey', colour='black')) + 
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + 
+  guides(fill=FALSE) + guides(fill = guide_legend())
+
+inductionchance_stackedhistogram
 
 
