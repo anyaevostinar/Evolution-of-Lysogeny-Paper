@@ -166,18 +166,6 @@ lysis_histogram_bins <- c(Hist_0.0 = "0 to 0.2 (Highly lysogenic)",
                           Hist_0.9 = "0.8 to 1.0 (Highly lytic)")
 ```
 
-Color settings
-```{r}
-#time series graph colors
-colors <- c("#B50142", "#CD0778", "#D506AD", "#E401E7", "#AB08FF","#7B1DFF", 
-            "#5731FD", "#4755FF", "#5E8EFF", "#6FC4FE", "#86E9FE", "#96FFF7", 
-            "#B2FCE3", "#BBFFDB", "#D4FFDD", "#EFFDF0")
-
-#stacked histogram colors
-tenhelix <- c("#891901", "#B50142", "#D506AD", "#AB08FF", "#5731FD", "#4755FF", 
-              "#86E9FE", "#B2FCE3", "#D4FFDD", "#EFFDF0")
-```
-
 # Collect and Munge Data
 
 Gather filenames
