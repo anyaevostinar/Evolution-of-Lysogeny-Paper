@@ -1,10 +1,11 @@
 #a script to run several replicates of several treatments locally
 #RUN SIMPLE_REPEAT.PY FROM WITHIN THE FOLDER WHERE THE DATA SHOULD GO
 #EX: INSIDE OF SymbulationEmp/Data, RUN python3 ../stats_scripts/simple_repeat.py
+#Assumes that SymSettings.cfg with the appropriate base settings is already in the data folder
 import sys
 
-plrs = [0.0, 0.025, 0.05]
-ics = [0.0, 0.1]
+plrs = [0.0, 0.025, 0.05] #prophage loss rates
+ics = [0.0, 0.1] #induction chances
 
 import subprocess
 
@@ -32,9 +33,8 @@ if(len(sys.argv) > 1):
 
 seeds = range(start_range, end_range)
 
-print("Copying SymSettings.cfg and executable")
-cmd("cp ../SymSettings.cfg .")
-cmd("cp ../symbulation .")
+print("Copying executable to current directory")
+cmd("cp ../../SymbulationEmp/symbulation .")
 print("Using seeds", start_range, "up to", end_range)
 
 for a in seeds:
