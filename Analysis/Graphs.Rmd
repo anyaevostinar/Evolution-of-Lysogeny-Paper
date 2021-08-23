@@ -184,25 +184,21 @@ Gather filenames
 ```{r}
 all_filenames <- list.files(folder)
 
-bacteriumincvals_filenames <- str_subset(all_filenames, "BacteriumIncVals")
 freeliving_filenames <- str_subset(all_filenames, "FreeLivingSyms")
 hostval_filenames <- str_subset(all_filenames, "HostVals")
 incvaldiffs_filenames <- str_subset(all_filenames, "IncValDifferences")
 induction_filenames <- str_subset(all_filenames, "InductionChance")
 lysischance_filenames <- str_subset(all_filenames, "LysisChance")
-phageincvals_filenames <- str_subset(all_filenames, "PhageIncVals")
 phagevals_filenames <- str_subset(all_filenames, "SymVals")
 ```
 
 Combine time series data for all subsets of datafiles
 ```{r, results='hide', message=FALSE}
-bacteriumincvals <- combine_time_data(bacteriumincvals_filenames, folder, treatments)
 freeliving <- combine_time_data(freeliving_filenames, folder, treatments)
 hostvals <- combine_time_data(hostval_filenames, folder, treatments)
 incvalsdiffs <- combine_time_data(incvaldiffs_filenames, folder, treatments)
 inductionchances <- combine_time_data(induction_filenames, folder, treatments)
 lysischances <- combine_time_data(lysischance_filenames, folder, treatments)
-phageincvals <- combine_time_data(phageincvals_filenames, folder, treatments)
 phagevals <- combine_time_data(phagevals_filenames, folder, treatments)
 ```
 
