@@ -134,7 +134,7 @@ combine_histogram_data <- function(time_data, separate_by, bins){
 General settings
 ```{r}
 folder <- "Data/" #Folder where datafiles are 
-treatments <- c("PLR", "COI") #Names of the treatments being tested - should match what is in filenames
+treatments <- c("PLR", "PIV") #Names of the treatments being tested - should match what is in filenames
 ```
 
 Stacked histogram settings
@@ -164,6 +164,18 @@ lysis_histogram_bins <- c(Hist_0.0 = "0 to 0.2 (Highly lysogenic)",
                           Hist_0.7 = "0.6 to 0.8 (Moderately lytic)",
                           Hist_0.8 = "0.8 to 1.0 (Highly lytic)",
                           Hist_0.9 = "0.8 to 1.0 (Highly lytic)")
+
+incorp_diff_separate_by <- "PIV"
+incorp_diff_histogram_bins <- c(Hist_0.0 = "0 to 0.2 (Highly beneficial)",
+                          Hist_0.1 = "0 to 0.2 (Highly beneficial)",
+                          Hist_0.2 = "0.2 to 0.4 (Moderately beneficial)",
+                          Hist_0.3 = "0.2 to 0.4 (Moderately beneficial)",
+                          Hist_0.4 = "0.4 to 0.6 (Neutral)",
+                          Hist_0.5 = "0.4 to 0.6 (Neutral)",
+                          Hist_0.6 = "0.6 to 0.8 (Moderately detrimental)",
+                          Hist_0.7 = "0.6 to 0.8 (Moderately detrimental)",
+                          Hist_0.8 = "0.8 to 1.0 (Highly detrimental)",
+                          Hist_0.9 = "0.8 to 1.0 (Highly detrimental)")
 ```
 
 # Collect and Munge Data
@@ -172,27 +184,41 @@ Gather filenames
 ```{r}
 all_filenames <- list.files(folder)
 
-hostval_filenames <- str_subset(all_filenames, "HostVals")
-lysischance_filenames <- str_subset(all_filenames, "LysisChance")
-phagevals_filenames <- str_subset(all_filenames, "SymVals")
+bacteriumincvals_filenames <- str_subset(all_filenames, "BacteriumIncVals")
 freeliving_filenames <- str_subset(all_filenames, "FreeLivingSyms")
+hostval_filenames <- str_subset(all_filenames, "HostVals")
+incvaldiffs_filenames <- str_subset(all_filenames, "IncValDifferences")
 induction_filenames <- str_subset(all_filenames, "InductionChance")
+lysischance_filenames <- str_subset(all_filenames, "LysisChance")
+phageincvals_filenames <- str_subset(all_filenames, "PhageIncVals")
+phagevals_filenames <- str_subset(all_filenames, "SymVals")
 ```
 
 Combine time series data for all subsets of datafiles
 ```{r, results='hide', message=FALSE}
-hostvals <- combine_time_data(hostval_filenames, folder, treatments)
-lysischances <- combine_time_data(lysischance_filenames, folder, treatments)
-phagevals <- combine_time_data(phagevals_filenames, folder, treatments)
+bacteriumincvals <- combine_time_data(bacteriumincvals_filenames, folder, treatments)
 freeliving <- combine_time_data(freeliving_filenames, folder, treatments)
+hostvals <- combine_time_data(hostval_filenames, folder, treatments)
+incvalsdiffs <- combine_time_data(incvaldiffs_filenames, folder, treatments)
 inductionchances <- combine_time_data(induction_filenames, folder, treatments)
+lysischances <- combine_time_data(lysischance_filenames, folder, treatments)
+phageincvals <- combine_time_data(phageincvals_filenames, folder, treatments)
+phagevals <- combine_time_data(phagevals_filenames, folder, treatments)
 ```
 
 Rearrange time series data into stacked histogram data
 ```{r}
-induction_histdata <- combine_histogram_data(inductionchances, induction_separate_by, induction_histogram_bins)
+induction_histdata <- combine_histogram_data(inductionchances, 
+                                             induction_separate_by,
+                                             induction_histogram_bins)
 
-lysis_histdata <- combine_histogram_data(lysischances, lysis_separate_by, lysis_histogram_bins)
+lysis_histdata <- combine_histogram_data(lysischances, 
+                                         lysis_separate_by, 
+                                         lysis_histogram_bins)
+
+incorp_diff_histdata <- combine_histogram_data(incvalsdiffs,
+                                                     incorp_diff_separate_by,
+                                                     incorp_diff_histogram_bins)
 ```
 
 # Create Graphs
@@ -249,7 +275,7 @@ hostcount_plot <- ggplot(data=hostvals,
   guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(hostvals$PLR))) + 
   scale_fill_manual(values=viridis(nlevels(hostvals$PLR)))
 
-hostcount_plot + facet_wrap(~COI)
+hostcount_plot + facet_wrap(~PIV)
 ```
 
 Host cfu count
@@ -264,7 +290,7 @@ hostcount_cfu_plot <- ggplot(data=hostvals, aes(x=update, y=cfu_count,
   guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(hostvals$PLR))) + 
   scale_fill_manual(values=viridis(nlevels(hostvals$PLR)))
 
-hostcount_cfu_plot + facet_wrap(~COI)
+hostcount_cfu_plot + facet_wrap(~PIV)
 ```
 
 Host uninfected count
@@ -279,7 +305,7 @@ host_uninfected_plot <- ggplot(data=hostvals, aes(x=update, y=uninfected_host_co
   guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(hostvals$PLR))) + 
   scale_fill_manual(values=viridis(nlevels(hostvals$PLR)))
 
-host_uninfected_plot + facet_wrap(~COI)
+host_uninfected_plot + facet_wrap(~PIV)
 ```
 
 Host int vals
@@ -294,7 +320,7 @@ hostvals_plot <- ggplot(data=hostvals, aes(x=update, y=mean_intval,
   guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(hostvals$PLR))) + 
   scale_fill_manual(values=viridis(nlevels(hostvals$PLR)))
 
-hostvals_plot + facet_wrap(~COI)
+hostvals_plot + facet_wrap(~PIV)
 ```
 
 ### Phage graphs
@@ -312,7 +338,7 @@ phagecount_plot <- ggplot(data=lysischances,
   guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(lysischances$PLR))) + 
   scale_fill_manual(values=viridis(nlevels(lysischances$PLR)))
 
-phagecount_plot + facet_wrap(~COI)
+phagecount_plot + facet_wrap(~PIV)
 ```
 
 Phage int val
@@ -327,7 +353,7 @@ phageintval_plot <- ggplot(data=phagevals, aes(x=update, y=mean_intval,
   guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(phagevals$PLR))) + 
   scale_fill_manual(values=viridis(nlevels(phagevals$PLR)))
 
-phageintval_plot + facet_wrap(~COI)
+phageintval_plot + facet_wrap(~PIV)
 ```
 
 Chance of lysis
@@ -343,7 +369,7 @@ lysischances_plot <- ggplot(data=lysischances,
   guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(lysischances$PLR))) + 
   scale_fill_manual(values=viridis(nlevels(lysischances$PLR)))
 
-lysischances_plot + facet_wrap(~COI)
+lysischances_plot + facet_wrap(~PIV)
 ```
 
 Chance of induction
@@ -359,7 +385,23 @@ inductionchances_plot <- ggplot(data=inductionchances,
   guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(inductionchances$PLR))) + 
   scale_fill_manual(values=viridis(nlevels(inductionchances$PLR)))
 
-inductionchances_plot + facet_wrap(~COI)
+inductionchances_plot + facet_wrap(~PIV)
+```
+
+Mean difference in incorporation vals
+```{r}
+incorp_diff_plot <- ggplot(data=incvalsdiffs,
+                            aes(x=update, y=mean_incval_difference),
+                                group=PLR, color=PLR) +
+  ylab("Mean difference in inc vals") + xlab("Updates") + 
+  stat_summary(aes(color=PLR, fill=PLR),
+               fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
+  theme(panel.background = element_rect(fill='white', colour='black')) +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(inductionchances$PLR))) + 
+  scale_fill_manual(values=viridis(nlevels(inductionchances$PLR)))
+
+incorp_diff_plot + facet_wrap(~PIV)
 ```
 
 Chance of lysis stacked histogram
@@ -384,11 +426,27 @@ inductionchance_stackedhistogram <- ggplot(induction_histdata,
   geom_area(aes(fill=Histogram_bins), position='stack') +
   ylab("Count of Phage with Phenotype") + xlab("Evolutionary time (in updates)") +
   scale_fill_manual("Chance of Induction\n Phenotypes",
-                    values=viridis(nlevels(lysis_histdata$Histogram_bins))) +
+                    values=viridis(nlevels(induction_histdata$Histogram_bins))) +
   facet_wrap(~treatment) + 
   theme(panel.background = element_rect(fill='light grey', colour='black')) + 
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + 
   guides(fill=FALSE) + guides(fill = guide_legend())
 
 inductionchance_stackedhistogram
+```
+
+Difference in inc vals stacked histogram
+```{r}
+incorp_diff_stackedhistogram <- ggplot(incorp_diff_histdata, 
+                                       aes(update, count)) + 
+  geom_area(aes(fill=Histogram_bins), position='stack') +
+  ylab("Count of Phage with Phenotype") + xlab("Evolutionary time (in updates)") +
+  scale_fill_manual("Difference in \n Incorporation Vals",
+                    values=viridis(nlevels(incorp_diff_histdata$Histogram_bins))) +
+  facet_wrap(~treatment) + 
+  theme(panel.background = element_rect(fill='light grey', colour='black')) + 
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + 
+  guides(fill=FALSE) + guides(fill = guide_legend())
+
+incorp_diff_stackedhistogram
 ```

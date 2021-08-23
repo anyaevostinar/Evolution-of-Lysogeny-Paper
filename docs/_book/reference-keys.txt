@@ -1,8 +1,11 @@
-fig:nice-fig
-tab:nice-tab
-prerequisites
-intro
-literature
+introduction
+about-our-supplemental-material
+contributing-authors
+data-availability
+source-code
+experimental-results
+configuration-settings
+key-settings
 methods
 math-example
 applications

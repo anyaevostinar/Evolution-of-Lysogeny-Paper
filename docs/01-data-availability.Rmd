@@ -1,0 +1,9 @@
+# Data Availability
+
+## Source Code
+
+Our source code is available [here.](https://github.com/anyaevostinar/SymbulationEmp)
+
+## Experimental Results
+
+The scripts to regenerate all data can be found [here.](https://github.com/anyaevostinar/Evolution-of-Lysogeny-Paper/tree/main/Data)
