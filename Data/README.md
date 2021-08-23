@@ -12,3 +12,6 @@ Started on 8/17/21, this run was intended to see the effect of lysogenic phage h
 
 ## ChanceOfInductionMutationTest
 Started on 8/6/21, this run was intended to check that the addition of lysogenic induction did not significantly change the evolutionary dynamics. It tested three different prophage loss rates (0.0, 0.025, and 0.05) with two different starting chances of induction (0 and 0.1). The chance of induction was permitted to mutate.
+
+## RandomIncVals
+Started on 8/24/21, this run was intended to see the effect of lysogenic phage helping or hurting their hosts through resource availability when the populations of phage and bacteriums start with a random distribution of incorporation vals. It was run with three prophage loss rates (0.0, 0.025, and 0.05). The incorporation values, chance of lysis, and chance of induction all had mutations enabled and the benefit to the host was on.
