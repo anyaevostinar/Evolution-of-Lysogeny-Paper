@@ -1,11 +1,16 @@
 introduction
 about-our-supplemental-material
 contributing-authors
+research-overview
+abstract
+experiments
+results
 data-availability
 source-code
 experimental-results
 configuration-settings
-key-settings
+experimental-settings
+other-relevant-settings
 methods
 math-example
 applications

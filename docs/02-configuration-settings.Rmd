@@ -1,3 +1,54 @@
 # Configuration Settings
 
-## Key Settings
+All configuration settings used for each experiment can be found in the [supplemental materials data folders](https://github.com/anyaevostinar/Evolution-of-Lysogeny-Paper/tree/main/Data) in the file titled SymSettings.cfg. The following settings are the focus of our experiments.
+
+## Experimental Settings
+**The following settings were changed for various experiments. The values used can be found in simple_repeats.py or in SymSettings.cgf.**
+
+LYSIS_CHANCE represents the chance of lysis for the original population of phage. For some experiments this was a random distribution (indicated by a value of -1), and for others we started the population at lysogenic (0), temperate (0.5), or lytic (1).
+
+PROPHAGE_LOSS_RATE represents the chance that a lysogenic phage will be killed off during an update. This functions to provide and influx of susceptible hosts for other phage to infect. We use three values throughout our experiments: 0.0, 0.025, and 0.05. 0 typically selects for lysogenic phage, 0.025 for temperate phage, and 0.05 for lytic phage.
+
+BENEFIT_TO_HOST is a switch that allows lysogenic phage to interact with their hosts resources. We toggle this switch across different experiments to explore its effect on the selection of lysis vs. lysogeny.
+
+PHAGE_INC_VAL
+
+## Other Relevant Settings
+**The following settings were kept constant for all experiments run for this paper, but these settings differ from the defaults.**
+
+MUTATION_SIZE indicates the size of the standard deviation of mutations. In this paper, we used a mutation size of 0.02.
+
+SYNERGY indicates the extent to which a lysogenic phage can influence its hosts resources, whether diminishing them or increasing them. A value of 2, used in all our experiments, means that the lysogenic phage could up to double their hosts resources. A value of 3 would mean a lysogenic phage could potentially triple the resources, 4 would quadruple, etc.
+
+VERTICAL_TRANSMISSION represents the rate at which a hosted phage would be permitted to pass down an offspring to its host's offspring. However, all lysogenic phage have a 100% chance of vertical transmission regardless of the configuration setting. In a lytic world, this configuration setting only influences the vertical transmission rate for lytic phage. We used a value of 0 for all experiments, forcing lytic phage to rely on bursting for their reproduction.
+
+RES_DISTRIBUTE represents the number of resources given to each host during each update. We distributed 50 resource point to each host upon each update.
+
+HOST_REPRO_RES represents the number of resource points needed for hosts to reproduce. We used a value of 600.
+
+LYSIS indicates whether the world will include phage and bacteriums. This switch is turned on for all experiments.
+
+CHANCE_OF_INDUCTION represents the chance that a lysogenic phage will induce and begin the lytic cycle. While this chance is an integral part of the biological system, it is so small that it is close to neglible. As such, we start all phage with a 0% chance of induction while allowing it to mutate in order to observe how it evolves.
+
+MUTATE_LYSIS_CHANCE is a switch that indicates whether or not the chance of lysis for phage offspring should be mutated from their parent's chance of lysis. We permitted lysis chance mutations for all experiments.
+
+SYM_LIMIT indicates how many phage can infect a singular host. We only allow one phage per host and thus use a value of 1.
+
+MUTATE_INDUCTION_CHANCE is a switch that determines whether or not the chance of induction will mutate for phage offspring. This switch is turned on for our experiments.
+
+BURST_TIME acts as a timer that determines how long it takes for a lytic phage to burst. Each lytic phage's burst timer is incremented (from a normal distribution centered at 1 with a standard deviation of 1) every update. Once the phage's burst timer reaches this configuration setting as a threshold, the phage offspring are released into the world and the host bacterium dies. We use a value of 100 for all experiments.
+
+HOST_INC_VAL
+
+MUTATE_HOST_INC_VAL
+
+MUTATE_PHAGE_INC_VAL
+
+SYM_LYSIS_RES
+
+START_MOI
+
+FREE_LIVING_SYMS
+
+
+

@@ -24,7 +24,7 @@
 <meta name="author" content="Alison Cameron, Seth Dorchen, and Anya Vostinar" />
 
 
-<meta name="date" content="2021-08-18" />
+<meta name="date" content="2021-08-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -77,6 +77,12 @@
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#about-our-supplemental-material"><i class="fa fa-check"></i><b>1.1</b> About our supplemental material</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#contributing-authors"><i class="fa fa-check"></i><b>1.2</b> Contributing Authors</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#research-overview"><i class="fa fa-check"></i><b>1.3</b> Research Overview</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#abstract"><i class="fa fa-check"></i><b>1.3.1</b> Abstract</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#experiments"><i class="fa fa-check"></i><b>1.3.2</b> Experiments</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#results"><i class="fa fa-check"></i><b>1.3.3</b> Results</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="data-availability.html"><a href="data-availability.html"><i class="fa fa-check"></i><b>2</b> Data Availability</a>
 <ul>
@@ -85,7 +91,8 @@
 </ul></li>
 <li class="chapter" data-level="3" data-path="configuration-settings.html"><a href="configuration-settings.html"><i class="fa fa-check"></i><b>3</b> Configuration Settings</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="configuration-settings.html"><a href="configuration-settings.html#key-settings"><i class="fa fa-check"></i><b>3.1</b> Key Settings</a></li>
+<li class="chapter" data-level="3.1" data-path="configuration-settings.html"><a href="configuration-settings.html#experimental-settings"><i class="fa fa-check"></i><b>3.1</b> Experimental Settings</a></li>
+<li class="chapter" data-level="3.2" data-path="configuration-settings.html"><a href="configuration-settings.html#other-relevant-settings"><i class="fa fa-check"></i><b>3.2</b> Other Relevant Settings</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a>
 <ul>
@@ -120,8 +127,35 @@
             <section class="normal" id="section-">
 <div id="configuration-settings" class="section level1" number="3">
 <h1><span class="header-section-number">Chapter 3</span> Configuration Settings</h1>
-<div id="key-settings" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Key Settings</h2>
+<p>All configuration settings used for each experiment can be found in the <a href="https://github.com/anyaevostinar/Evolution-of-Lysogeny-Paper/tree/main/Data">supplemental materials data folders</a> in the file titled SymSettings.cfg. The following settings are the focus of our experiments.</p>
+<div id="experimental-settings" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Experimental Settings</h2>
+<p><strong>The following settings were changed for various experiments. The values used can be found in simple_repeats.py or in SymSettings.cgf.</strong></p>
+<p>LYSIS_CHANCE represents the chance of lysis for the original population of phage. For some experiments this was a random distribution (indicated by a value of -1), and for others we started the population at lysogenic (0), temperate (0.5), or lytic (1).</p>
+<p>PROPHAGE_LOSS_RATE represents the chance that a lysogenic phage will be killed off during an update. This functions to provide and influx of susceptible hosts for other phage to infect. We use three values throughout our experiments: 0.0, 0.025, and 0.05. 0 typically selects for lysogenic phage, 0.025 for temperate phage, and 0.05 for lytic phage.</p>
+<p>BENEFIT_TO_HOST is a switch that allows lysogenic phage to interact with their hosts resources. We toggle this switch across different experiments to explore its effect on the selection of lysis vs. lysogeny.</p>
+<p>PHAGE_INC_VAL</p>
+</div>
+<div id="other-relevant-settings" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Other Relevant Settings</h2>
+<p><strong>The following settings were kept constant for all experiments run for this paper, but these settings differ from the defaults.</strong></p>
+<p>MUTATION_SIZE indicates the size of the standard deviation of mutations. In this paper, we used a mutation size of 0.02.</p>
+<p>SYNERGY indicates the extent to which a lysogenic phage can influence its hosts resources, whether diminishing them or increasing them. A value of 2, used in all our experiments, means that the lysogenic phage could up to double their hosts resources. A value of 3 would mean a lysogenic phage could potentially triple the resources, 4 would quadruple, etc.</p>
+<p>VERTICAL_TRANSMISSION represents the rate at which a hosted phage would be permitted to pass down an offspring to its host’s offspring. However, all lysogenic phage have a 100% chance of vertical transmission regardless of the configuration setting. In a lytic world, this configuration setting only influences the vertical transmission rate for lytic phage. We used a value of 0 for all experiments, forcing lytic phage to rely on bursting for their reproduction.</p>
+<p>RES_DISTRIBUTE represents the number of resources given to each host during each update. We distributed 50 resource point to each host upon each update.</p>
+<p>HOST_REPRO_RES represents the number of resource points needed for hosts to reproduce. We used a value of 600.</p>
+<p>LYSIS indicates whether the world will include phage and bacteriums. This switch is turned on for all experiments.</p>
+<p>CHANCE_OF_INDUCTION represents the chance that a lysogenic phage will induce and begin the lytic cycle. While this chance is an integral part of the biological system, it is so small that it is close to neglible. As such, we start all phage with a 0% chance of induction while allowing it to mutate in order to observe how it evolves.</p>
+<p>MUTATE_LYSIS_CHANCE is a switch that indicates whether or not the chance of lysis for phage offspring should be mutated from their parent’s chance of lysis. We permitted lysis chance mutations for all experiments.</p>
+<p>SYM_LIMIT indicates how many phage can infect a singular host. We only allow one phage per host and thus use a value of 1.</p>
+<p>MUTATE_INDUCTION_CHANCE is a switch that determines whether or not the chance of induction will mutate for phage offspring. This switch is turned on for our experiments.</p>
+<p>BURST_TIME acts as a timer that determines how long it takes for a lytic phage to burst. Each lytic phage’s burst timer is incremented (from a normal distribution centered at 1 with a standard deviation of 1) every update. Once the phage’s burst timer reaches this configuration setting as a threshold, the phage offspring are released into the world and the host bacterium dies. We use a value of 100 for all experiments.</p>
+<p>HOST_INC_VAL</p>
+<p>MUTATE_HOST_INC_VAL</p>
+<p>MUTATE_PHAGE_INC_VAL</p>
+<p>SYM_LYSIS_RES</p>
+<p>START_MOI</p>
+<p>FREE_LIVING_SYMS</p>
 
 </div>
 </div>
