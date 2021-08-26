@@ -4,6 +4,9 @@ To regenerate the data in a folder, first make the executable of Symbulation in 
 ```
 python3 simple_repeat.py
 ```
+## InductionOff_BenefitOn_NonRandomIncVals
+Started on 8/26/21, this run isolates the effect of the benefit without including induction. We use three prophage loss rates (0.0, 0.025, and 0.05) with a constant host incorporation value of 1 and starting phage incorporation values of 1.0, 0.5, and 0.0. Both incorporation values were permitted to mutate and benefit to the host was on. We set the chance of induction to 0 for all phage and do not allow it to mutate.
+
 ## InductionOn_BenefitOff
 Started on 8/23/21, this run was intended to verify that the system behavior stayed the same before and after implementing a potential benefit to the host from lysogenic phage. In this run, that benefit has been switched off via the config setting. The data, when graphed, should be the same as the data in ChanceOfInductionMutationTest.
 
