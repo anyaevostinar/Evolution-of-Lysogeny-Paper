@@ -1,7 +1,7 @@
 # Template for Munging Data and Creating Graphs
 The following is a basic outline of how we used R to munge data and generate graphs
 
-```{r, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
 library(ggplot2)
