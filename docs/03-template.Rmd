@@ -34,7 +34,9 @@ get_treatment_val <- function(filename, treatment_name){
   } else {
     treatment_val <- str_extract(treatment, integer_pattern)
   }
-  treatment_val
+  
+  full_treatment <- str_c(c(treatment_name, " ", treatment_val), sep="", collapse="")
+  full_treatment
 }
 ```
 
@@ -122,7 +124,8 @@ combine_histogram_data <- function(time_data, separate_by, bins){
                           list(update = collapsed_data$update,
                                treatment = collapsed_data$treatment,
                                Histogram_bins = collapsed_data$Histogram_factor), sum)
-  final_data
+  
+  final_data 
 }
 ```
 
