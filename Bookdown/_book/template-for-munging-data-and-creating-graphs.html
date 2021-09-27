@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Template for Munging Data and Creating Graphs | Evolution of Lysogeny Supplemental Materials</title>
+  <meta name="description" content="Supplemental Materials" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Template for Munging Data and Creating Graphs | Evolution of Lysogeny Supplemental Materials" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Supplemental Materials" />
+  <meta name="github-repo" content="anyaevostinar/Evolution-of-Lysogeny-Paper" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Template for Munging Data and Creating Graphs | Evolution of Lysogeny Supplemental Materials" />
+  
+  <meta name="twitter:description" content="Supplemental Materials" />
+  
+
+<meta name="author" content="Alison Cameron, Seth Dorchen, and Anya Vostinar" />
+
+
+<meta name="date" content="2021-08-27" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="configuration-settings.html"/>
+<link rel="next" href="benefit-only---induction-off.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Supplemental Materials</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#about-our-supplemental-material"><i class="fa fa-check"></i><b>1.1</b> About our supplemental material</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#contributing-authors"><i class="fa fa-check"></i><b>1.2</b> Contributing Authors</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#research-overview"><i class="fa fa-check"></i><b>1.3</b> Research Overview</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#abstract"><i class="fa fa-check"></i><b>1.3.1</b> Abstract</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#experiments"><i class="fa fa-check"></i><b>1.3.2</b> Experiments</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#results"><i class="fa fa-check"></i><b>1.3.3</b> Results</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-availability.html"><a href="data-availability.html"><i class="fa fa-check"></i><b>2</b> Data Availability</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-availability.html"><a href="data-availability.html#source-code"><i class="fa fa-check"></i><b>2.1</b> Source Code</a></li>
+<li class="chapter" data-level="2.2" data-path="data-availability.html"><a href="data-availability.html#experimental-results"><i class="fa fa-check"></i><b>2.2</b> Experimental Results</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="configuration-settings.html"><a href="configuration-settings.html"><i class="fa fa-check"></i><b>3</b> Configuration Settings</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="configuration-settings.html"><a href="configuration-settings.html#experimental-settings"><i class="fa fa-check"></i><b>3.1</b> Experimental Settings</a></li>
+<li class="chapter" data-level="3.2" data-path="configuration-settings.html"><a href="configuration-settings.html#other-relevant-settings"><i class="fa fa-check"></i><b>3.2</b> Other Relevant Settings</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="template-for-munging-data-and-creating-graphs.html"><a href="template-for-munging-data-and-creating-graphs.html"><i class="fa fa-check"></i><b>4</b> Template for Munging Data and Creating Graphs</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="template-for-munging-data-and-creating-graphs.html"><a href="template-for-munging-data-and-creating-graphs.html#load-data-munging-functions"><i class="fa fa-check"></i><b>4.1</b> Load Data Munging Functions</a></li>
+<li class="chapter" data-level="4.2" data-path="template-for-munging-data-and-creating-graphs.html"><a href="template-for-munging-data-and-creating-graphs.html#gather-settings-and-treatments"><i class="fa fa-check"></i><b>4.2</b> Gather Settings and Treatments</a></li>
+<li class="chapter" data-level="4.3" data-path="template-for-munging-data-and-creating-graphs.html"><a href="template-for-munging-data-and-creating-graphs.html#collect-and-munge-data"><i class="fa fa-check"></i><b>4.3</b> Collect and Munge Data</a></li>
+<li class="chapter" data-level="4.4" data-path="template-for-munging-data-and-creating-graphs.html"><a href="template-for-munging-data-and-creating-graphs.html#create-graphs"><i class="fa fa-check"></i><b>4.4</b> Create graphs</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="template-for-munging-data-and-creating-graphs.html"><a href="template-for-munging-data-and-creating-graphs.html#graph-templates"><i class="fa fa-check"></i><b>4.4.1</b> Graph templates</a></li>
+<li class="chapter" data-level="4.4.2" data-path="template-for-munging-data-and-creating-graphs.html"><a href="template-for-munging-data-and-creating-graphs.html#examples"><i class="fa fa-check"></i><b>4.4.2</b> Examples</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="benefit-only---induction-off.html"><a href="benefit-only---induction-off.html"><i class="fa fa-check"></i><b>5</b> Benefit Only - Induction off</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="benefit-only---induction-off.html"><a href="benefit-only---induction-off.html#gather-settings-and-treatments-1"><i class="fa fa-check"></i><b>5.1</b> Gather Settings and Treatments</a></li>
+<li class="chapter" data-level="5.2" data-path="benefit-only---induction-off.html"><a href="benefit-only---induction-off.html#collect-and-munge-data-1"><i class="fa fa-check"></i><b>5.2</b> Collect and Munge Data</a></li>
+<li class="chapter" data-level="5.3" data-path="benefit-only---induction-off.html"><a href="benefit-only---induction-off.html#generate-graphs"><i class="fa fa-check"></i><b>5.3</b> Generate Graphs</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="benefit-only---induction-off.html"><a href="benefit-only---induction-off.html#host-graphs"><i class="fa fa-check"></i><b>5.3.1</b> Host graphs</a></li>
+<li class="chapter" data-level="5.3.2" data-path="benefit-only---induction-off.html"><a href="benefit-only---induction-off.html#phage-graphs"><i class="fa fa-check"></i><b>5.3.2</b> Phage graphs</a></li>
+<li class="chapter" data-level="5.3.3" data-path="benefit-only---induction-off.html"><a href="benefit-only---induction-off.html#stacked-histograms"><i class="fa fa-check"></i><b>5.3.3</b> Stacked Histograms</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="induction-only---benefit-off.html"><a href="induction-only---benefit-off.html"><i class="fa fa-check"></i><b>6</b> Induction Only - Benefit Off</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="induction-only---benefit-off.html"><a href="induction-only---benefit-off.html#gather-settings-and-treatments-2"><i class="fa fa-check"></i><b>6.1</b> Gather Settings and Treatments</a></li>
+<li class="chapter" data-level="6.2" data-path="induction-only---benefit-off.html"><a href="induction-only---benefit-off.html#collect-and-munge-data-2"><i class="fa fa-check"></i><b>6.2</b> Collect and Munge Data</a></li>
+<li class="chapter" data-level="6.3" data-path="induction-only---benefit-off.html"><a href="induction-only---benefit-off.html#generate-graphs-1"><i class="fa fa-check"></i><b>6.3</b> Generate Graphs</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="induction-only---benefit-off.html"><a href="induction-only---benefit-off.html#host-graphs-1"><i class="fa fa-check"></i><b>6.3.1</b> Host graphs</a></li>
+<li class="chapter" data-level="6.3.2" data-path="induction-only---benefit-off.html"><a href="induction-only---benefit-off.html#phage-graphs-1"><i class="fa fa-check"></i><b>6.3.2</b> Phage graphs</a></li>
+<li class="chapter" data-level="6.3.3" data-path="induction-only---benefit-off.html"><a href="induction-only---benefit-off.html#stacked-histograms-1"><i class="fa fa-check"></i><b>6.3.3</b> Stacked Histograms</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="induction-and-benefit-with-non-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-non-random-starting-incorporation-vals.html"><i class="fa fa-check"></i><b>7</b> Induction and Benefit with Non-Random Starting Incorporation Vals</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="induction-and-benefit-with-non-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-non-random-starting-incorporation-vals.html#gather-settings-and-treatments-3"><i class="fa fa-check"></i><b>7.1</b> Gather Settings and Treatments</a></li>
+<li class="chapter" data-level="7.2" data-path="induction-and-benefit-with-non-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-non-random-starting-incorporation-vals.html#munge-data"><i class="fa fa-check"></i><b>7.2</b> Munge Data</a></li>
+<li class="chapter" data-level="7.3" data-path="induction-and-benefit-with-non-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-non-random-starting-incorporation-vals.html#create-graphs-1"><i class="fa fa-check"></i><b>7.3</b> Create Graphs</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="induction-and-benefit-with-non-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-non-random-starting-incorporation-vals.html#host-graphs-2"><i class="fa fa-check"></i><b>7.3.1</b> Host graphs</a></li>
+<li class="chapter" data-level="7.3.2" data-path="induction-and-benefit-with-non-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-non-random-starting-incorporation-vals.html#phage-graphs-2"><i class="fa fa-check"></i><b>7.3.2</b> Phage graphs</a></li>
+<li class="chapter" data-level="7.3.3" data-path="induction-and-benefit-with-non-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-non-random-starting-incorporation-vals.html#stacked-histograms-2"><i class="fa fa-check"></i><b>7.3.3</b> Stacked Histograms</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="induction-and-benefit-with-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-random-starting-incorporation-vals.html"><i class="fa fa-check"></i><b>8</b> Induction and Benefit with Random Starting Incorporation Vals</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="induction-and-benefit-with-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-random-starting-incorporation-vals.html#gather-settings-and-treatments-4"><i class="fa fa-check"></i><b>8.1</b> Gather Settings and Treatments</a></li>
+<li class="chapter" data-level="8.2" data-path="induction-and-benefit-with-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-random-starting-incorporation-vals.html#munge-data-1"><i class="fa fa-check"></i><b>8.2</b> Munge Data</a></li>
+<li class="chapter" data-level="8.3" data-path="induction-and-benefit-with-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-random-starting-incorporation-vals.html#create-graphs-2"><i class="fa fa-check"></i><b>8.3</b> Create Graphs</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="induction-and-benefit-with-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-random-starting-incorporation-vals.html#host-graphs-3"><i class="fa fa-check"></i><b>8.3.1</b> Host graphs</a></li>
+<li class="chapter" data-level="8.3.2" data-path="induction-and-benefit-with-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-random-starting-incorporation-vals.html#phage-graphs-3"><i class="fa fa-check"></i><b>8.3.2</b> Phage graphs</a></li>
+<li class="chapter" data-level="8.3.3" data-path="induction-and-benefit-with-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-random-starting-incorporation-vals.html#stacked-histograms-3"><i class="fa fa-check"></i><b>8.3.3</b> Stacked Histograms</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Evolution of Lysogeny Supplemental Materials</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="template-for-munging-data-and-creating-graphs" class="section level1" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Template for Munging Data and Creating Graphs</h1>
+<p>The following is a basic outline of how we used R to munge data and generate graphs</p>
+<div id="load-data-munging-functions" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Load Data Munging Functions</h2>
+<p>For a particular treatment, extract the value for the data from the filename using string manipulation</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="template-for-munging-data-and-creating-graphs.html#cb1-1" aria-hidden="true" tabindex="-1"></a>get_treatment_val <span class="ot">&lt;-</span> <span class="cf">function</span>(filename, treatment_name){</span>
+<span id="cb1-2"><a href="template-for-munging-data-and-creating-graphs.html#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Input: a filename string and a string representing which treatment you are looking for</span></span>
+<span id="cb1-3"><a href="template-for-munging-data-and-creating-graphs.html#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#       Ex: &quot;HostVals_VT0.6_SEED10.data&quot; and &quot;VT&quot;</span></span>
+<span id="cb1-4"><a href="template-for-munging-data-and-creating-graphs.html#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Output: A string representing the value for the given treatment</span></span>
+<span id="cb1-5"><a href="template-for-munging-data-and-creating-graphs.html#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#       Ex: &quot;0.6&quot;</span></span>
+<span id="cb1-6"><a href="template-for-munging-data-and-creating-graphs.html#cb1-6" aria-hidden="true" tabindex="-1"></a>  number_pattern <span class="ot">&lt;-</span> <span class="st">&quot;[</span><span class="sc">\\</span><span class="st">d][._][</span><span class="sc">\\</span><span class="st">d]*&quot;</span></span>
+<span id="cb1-7"><a href="template-for-munging-data-and-creating-graphs.html#cb1-7" aria-hidden="true" tabindex="-1"></a>  treatment_pattern <span class="ot">&lt;-</span> <span class="fu">str_c</span>(<span class="fu">c</span>(treatment_name, number_pattern), <span class="at">sep=</span><span class="st">&quot;&quot;</span>, <span class="at">collapse=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb1-8"><a href="template-for-munging-data-and-creating-graphs.html#cb1-8" aria-hidden="true" tabindex="-1"></a>  treatment <span class="ot">&lt;-</span> <span class="fu">str_extract</span>(filename, treatment_pattern)</span>
+<span id="cb1-9"><a href="template-for-munging-data-and-creating-graphs.html#cb1-9" aria-hidden="true" tabindex="-1"></a>  treatment_val <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb1-10"><a href="template-for-munging-data-and-creating-graphs.html#cb1-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-11"><a href="template-for-munging-data-and-creating-graphs.html#cb1-11" aria-hidden="true" tabindex="-1"></a>  decimal_pattern <span class="ot">&lt;-</span> <span class="st">&quot;[</span><span class="sc">\\</span><span class="st">d].[</span><span class="sc">\\</span><span class="st">d]+&quot;</span></span>
+<span id="cb1-12"><a href="template-for-munging-data-and-creating-graphs.html#cb1-12" aria-hidden="true" tabindex="-1"></a>  integer_pattern <span class="ot">&lt;-</span> <span class="st">&quot;[</span><span class="sc">\\</span><span class="st">d]+&quot;</span></span>
+<span id="cb1-13"><a href="template-for-munging-data-and-creating-graphs.html#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">str_detect</span>(treatment, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.&quot;</span>)){</span>
+<span id="cb1-14"><a href="template-for-munging-data-and-creating-graphs.html#cb1-14" aria-hidden="true" tabindex="-1"></a>    treatment_val <span class="ot">&lt;-</span> <span class="fu">str_extract</span>(treatment, decimal_pattern)</span>
+<span id="cb1-15"><a href="template-for-munging-data-and-creating-graphs.html#cb1-15" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb1-16"><a href="template-for-munging-data-and-creating-graphs.html#cb1-16" aria-hidden="true" tabindex="-1"></a>    treatment_val <span class="ot">&lt;-</span> <span class="fu">str_extract</span>(treatment, integer_pattern)</span>
+<span id="cb1-17"><a href="template-for-munging-data-and-creating-graphs.html#cb1-17" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-18"><a href="template-for-munging-data-and-creating-graphs.html#cb1-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-19"><a href="template-for-munging-data-and-creating-graphs.html#cb1-19" aria-hidden="true" tabindex="-1"></a>  full_treatment <span class="ot">&lt;-</span> <span class="fu">str_c</span>(<span class="fu">c</span>(treatment_name, <span class="st">&quot; &quot;</span>, treatment_val), <span class="at">sep=</span><span class="st">&quot;&quot;</span>, <span class="at">collapse=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb1-20"><a href="template-for-munging-data-and-creating-graphs.html#cb1-20" aria-hidden="true" tabindex="-1"></a>  full_treatment</span>
+<span id="cb1-21"><a href="template-for-munging-data-and-creating-graphs.html#cb1-21" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Retrieve the dataset for a particular filename, adding columns for each treatment</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="template-for-munging-data-and-creating-graphs.html#cb2-1" aria-hidden="true" tabindex="-1"></a>get_data <span class="ot">&lt;-</span> <span class="cf">function</span>(filename, folder, treatments){</span>
+<span id="cb2-2"><a href="template-for-munging-data-and-creating-graphs.html#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Input: A datafile name as a string, the folder where the data is located, and a list of treatment names</span></span>
+<span id="cb2-3"><a href="template-for-munging-data-and-creating-graphs.html#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#       Ex: &quot;HostVals_VT0.6_SEED10.data&quot;, &quot;VertTrans_Data/&quot;, and c(&quot;VT&quot;)</span></span>
+<span id="cb2-4"><a href="template-for-munging-data-and-creating-graphs.html#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Output: A tibble containing all data in the file with a column added for the Seed and for all treatment names</span></span>
+<span id="cb2-5"><a href="template-for-munging-data-and-creating-graphs.html#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#       Ex: The columns added for the above data would be SEED with all values at 10 and </span></span>
+<span id="cb2-6"><a href="template-for-munging-data-and-creating-graphs.html#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#           VT with all values at 0.6</span></span>
+<span id="cb2-7"><a href="template-for-munging-data-and-creating-graphs.html#cb2-7" aria-hidden="true" tabindex="-1"></a>  seed <span class="ot">&lt;-</span> <span class="fu">str_extract</span>(filename, <span class="st">&quot;SEED[</span><span class="sc">\\</span><span class="st">d]+.&quot;</span>)</span>
+<span id="cb2-8"><a href="template-for-munging-data-and-creating-graphs.html#cb2-8" aria-hidden="true" tabindex="-1"></a>  seed_val <span class="ot">&lt;-</span> <span class="fu">str_extract</span>(seed, <span class="st">&quot;[</span><span class="sc">\\</span><span class="st">d]+&quot;</span>)</span>
+<span id="cb2-9"><a href="template-for-munging-data-and-creating-graphs.html#cb2-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-10"><a href="template-for-munging-data-and-creating-graphs.html#cb2-10" aria-hidden="true" tabindex="-1"></a>  full_filename <span class="ot">&lt;-</span> <span class="fu">str_c</span>(<span class="fu">c</span>(folder, filename), <span class="at">sep=</span><span class="st">&quot;&quot;</span>, <span class="at">collapse=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb2-11"><a href="template-for-munging-data-and-creating-graphs.html#cb2-11" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(full_filename) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">SEED =</span> seed_val)</span>
+<span id="cb2-12"><a href="template-for-munging-data-and-creating-graphs.html#cb2-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-13"><a href="template-for-munging-data-and-creating-graphs.html#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(treatments))){</span>
+<span id="cb2-14"><a href="template-for-munging-data-and-creating-graphs.html#cb2-14" aria-hidden="true" tabindex="-1"></a>    data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="sc">!!</span>treatments[i] <span class="sc">:</span><span class="er">=</span> <span class="fu">as.factor</span>(<span class="fu">get_treatment_val</span>(filename, treatments[i])))</span>
+<span id="cb2-15"><a href="template-for-munging-data-and-creating-graphs.html#cb2-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-16"><a href="template-for-munging-data-and-creating-graphs.html#cb2-16" aria-hidden="true" tabindex="-1"></a>  data</span>
+<span id="cb2-17"><a href="template-for-munging-data-and-creating-graphs.html#cb2-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>For all files of a particular type (e.g. HostVals), create one dataset that can be used for time series graphs</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="template-for-munging-data-and-creating-graphs.html#cb3-1" aria-hidden="true" tabindex="-1"></a>combine_time_data <span class="ot">&lt;-</span> <span class="cf">function</span>(filenames, folder, treatments){</span>
+<span id="cb3-2"><a href="template-for-munging-data-and-creating-graphs.html#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Input: A list of relevant datafile names, the folder where the data is, and a list of treatment names</span></span>
+<span id="cb3-3"><a href="template-for-munging-data-and-creating-graphs.html#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#       Ex: c(&quot;HostVals_VT0.6_SEED10.data&quot;, &quot;HostVals_VT0.8_SEED10.data&quot;), &quot;VertTrans_Data/&quot;, </span></span>
+<span id="cb3-4"><a href="template-for-munging-data-and-creating-graphs.html#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#           and c(&quot;VT&quot;)</span></span>
+<span id="cb3-5"><a href="template-for-munging-data-and-creating-graphs.html#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Output: A tibble with all data from all datafiles given, with columns added for the seed and </span></span>
+<span id="cb3-6"><a href="template-for-munging-data-and-creating-graphs.html#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#       all treatment names</span></span>
+<span id="cb3-7"><a href="template-for-munging-data-and-creating-graphs.html#cb3-7" aria-hidden="true" tabindex="-1"></a>  all_data <span class="ot">&lt;-</span> <span class="fu">get_data</span>(filenames[<span class="dv">1</span>], folder, treatments)</span>
+<span id="cb3-8"><a href="template-for-munging-data-and-creating-graphs.html#cb3-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-9"><a href="template-for-munging-data-and-creating-graphs.html#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">length</span>(filenames) <span class="sc">&gt;</span> <span class="dv">1</span>){</span>
+<span id="cb3-10"><a href="template-for-munging-data-and-creating-graphs.html#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(filenames))){</span>
+<span id="cb3-11"><a href="template-for-munging-data-and-creating-graphs.html#cb3-11" aria-hidden="true" tabindex="-1"></a>      add_data <span class="ot">&lt;-</span> <span class="fu">get_data</span>(filenames[i], folder, treatments)</span>
+<span id="cb3-12"><a href="template-for-munging-data-and-creating-graphs.html#cb3-12" aria-hidden="true" tabindex="-1"></a>      all_data <span class="ot">&lt;-</span> <span class="fu">full_join</span>(all_data, add_data)</span>
+<span id="cb3-13"><a href="template-for-munging-data-and-creating-graphs.html#cb3-13" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-14"><a href="template-for-munging-data-and-creating-graphs.html#cb3-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-15"><a href="template-for-munging-data-and-creating-graphs.html#cb3-15" aria-hidden="true" tabindex="-1"></a>  all_data <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">SEED =</span> <span class="fu">as.factor</span>(SEED))</span>
+<span id="cb3-16"><a href="template-for-munging-data-and-creating-graphs.html#cb3-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Take the time series data and turn it into a format that can be used for stacked histograms</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="template-for-munging-data-and-creating-graphs.html#cb4-1" aria-hidden="true" tabindex="-1"></a>combine_histogram_data <span class="ot">&lt;-</span> <span class="cf">function</span>(time_data, separate_by, bins){</span>
+<span id="cb4-2"><a href="template-for-munging-data-and-creating-graphs.html#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Input: The time series data produced by combine_time_data, the column name </span></span>
+<span id="cb4-3"><a href="template-for-munging-data-and-creating-graphs.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#       which the stacked histogram will be facet wrapped by,</span></span>
+<span id="cb4-4"><a href="template-for-munging-data-and-creating-graphs.html#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#       and 1:1 list for the desired names of histogram bins</span></span>
+<span id="cb4-5"><a href="template-for-munging-data-and-creating-graphs.html#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#       Ex: lysischances, &quot;PLR&quot;, and</span></span>
+<span id="cb4-6"><a href="template-for-munging-data-and-creating-graphs.html#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#           lysis_histogram_bins &lt;- c(Hist_0.0 = &quot;0 to 0.2 (Highly lysogenic)&quot;,</span></span>
+<span id="cb4-7"><a href="template-for-munging-data-and-creating-graphs.html#cb4-7" aria-hidden="true" tabindex="-1"></a>                          <span class="co"># Hist_0.1 = &quot;0 to 0.2 (Highly lysogenic)&quot;,</span></span>
+<span id="cb4-8"><a href="template-for-munging-data-and-creating-graphs.html#cb4-8" aria-hidden="true" tabindex="-1"></a>                          <span class="co"># Hist_0.2 = &quot;0.2 to 0.4 (Moderately lysogenic)&quot;,</span></span>
+<span id="cb4-9"><a href="template-for-munging-data-and-creating-graphs.html#cb4-9" aria-hidden="true" tabindex="-1"></a>                          <span class="co"># Hist_0.3 = &quot;0.2 to 0.4 (Moderately lysogenic)&quot;,</span></span>
+<span id="cb4-10"><a href="template-for-munging-data-and-creating-graphs.html#cb4-10" aria-hidden="true" tabindex="-1"></a>                          <span class="co"># Hist_0.4 = &quot;0.4 to 0.6 (Temperate)&quot;,</span></span>
+<span id="cb4-11"><a href="template-for-munging-data-and-creating-graphs.html#cb4-11" aria-hidden="true" tabindex="-1"></a>                          <span class="co"># Hist_0.5 = &quot;0.4 to 0.6 (Temperate)&quot;,</span></span>
+<span id="cb4-12"><a href="template-for-munging-data-and-creating-graphs.html#cb4-12" aria-hidden="true" tabindex="-1"></a>                          <span class="co"># Hist_0.6 = &quot;0.6 to 0.8 (Moderately lytic)&quot;,</span></span>
+<span id="cb4-13"><a href="template-for-munging-data-and-creating-graphs.html#cb4-13" aria-hidden="true" tabindex="-1"></a>                          <span class="co"># Hist_0.7 = &quot;0.6 to 0.8 (Moderately lytic)&quot;,</span></span>
+<span id="cb4-14"><a href="template-for-munging-data-and-creating-graphs.html#cb4-14" aria-hidden="true" tabindex="-1"></a>                          <span class="co"># Hist_0.8 = &quot;0.8 to 1.0 (Highly lytic)&quot;,</span></span>
+<span id="cb4-15"><a href="template-for-munging-data-and-creating-graphs.html#cb4-15" aria-hidden="true" tabindex="-1"></a>                          <span class="co"># Hist_0.9 = &quot;0.8 to 1.0 (Highly lytic)&quot;)</span></span>
+<span id="cb4-16"><a href="template-for-munging-data-and-creating-graphs.html#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Output: A tibble with 4 columns: update, treatment, Histogram_bins, and count. </span></span>
+<span id="cb4-17"><a href="template-for-munging-data-and-creating-graphs.html#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">#       This is the format needed to create a stacked histogram.</span></span>
+<span id="cb4-18"><a href="template-for-munging-data-and-creating-graphs.html#cb4-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-19"><a href="template-for-munging-data-and-creating-graphs.html#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">#collect initial data and pivot longer</span></span>
+<span id="cb4-20"><a href="template-for-munging-data-and-creating-graphs.html#cb4-20" aria-hidden="true" tabindex="-1"></a>  initial_data <span class="ot">&lt;-</span> time_data <span class="sc">%&gt;%</span></span>
+<span id="cb4-21"><a href="template-for-munging-data-and-creating-graphs.html#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(</span>
+<span id="cb4-22"><a href="template-for-munging-data-and-creating-graphs.html#cb4-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">&quot;Hist_&quot;</span>),</span>
+<span id="cb4-23"><a href="template-for-munging-data-and-creating-graphs.html#cb4-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">names_to =</span> <span class="st">&quot;Histogram_bin&quot;</span>,</span>
+<span id="cb4-24"><a href="template-for-munging-data-and-creating-graphs.html#cb4-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">values_to =</span> <span class="st">&quot;Bin_count&quot;</span></span>
+<span id="cb4-25"><a href="template-for-munging-data-and-creating-graphs.html#cb4-25" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb4-26"><a href="template-for-munging-data-and-creating-graphs.html#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Histogram_bin =</span> <span class="fu">as.factor</span>(Histogram_bin))</span>
+<span id="cb4-27"><a href="template-for-munging-data-and-creating-graphs.html#cb4-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-28"><a href="template-for-munging-data-and-creating-graphs.html#cb4-28" aria-hidden="true" tabindex="-1"></a>  <span class="co">#collapse the bins</span></span>
+<span id="cb4-29"><a href="template-for-munging-data-and-creating-graphs.html#cb4-29" aria-hidden="true" tabindex="-1"></a>  collapsed_data <span class="ot">&lt;-</span> initial_data</span>
+<span id="cb4-30"><a href="template-for-munging-data-and-creating-graphs.html#cb4-30" aria-hidden="true" tabindex="-1"></a>  collapsed_data<span class="sc">$</span>Histogram_factor <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">recode</span>(collapsed_data<span class="sc">$</span>Histogram_bin, <span class="sc">!!!</span>bins)</span>
+<span id="cb4-31"><a href="template-for-munging-data-and-creating-graphs.html#cb4-31" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-32"><a href="template-for-munging-data-and-creating-graphs.html#cb4-32" aria-hidden="true" tabindex="-1"></a>  <span class="co">#aggregate the counts</span></span>
+<span id="cb4-33"><a href="template-for-munging-data-and-creating-graphs.html#cb4-33" aria-hidden="true" tabindex="-1"></a>  collapsed_data <span class="ot">&lt;-</span> collapsed_data <span class="sc">%&gt;%</span></span>
+<span id="cb4-34"><a href="template-for-munging-data-and-creating-graphs.html#cb4-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">count =</span> Bin_count,</span>
+<span id="cb4-35"><a href="template-for-munging-data-and-creating-graphs.html#cb4-35" aria-hidden="true" tabindex="-1"></a>           <span class="at">treatment =</span> <span class="fu">get</span>(separate_by)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-36"><a href="template-for-munging-data-and-creating-graphs.html#cb4-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(treatment, update, Histogram_factor, count)</span>
+<span id="cb4-37"><a href="template-for-munging-data-and-creating-graphs.html#cb4-37" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-38"><a href="template-for-munging-data-and-creating-graphs.html#cb4-38" aria-hidden="true" tabindex="-1"></a>  final_data <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(<span class="fu">list</span>(<span class="at">count =</span> collapsed_data<span class="sc">$</span>count), </span>
+<span id="cb4-39"><a href="template-for-munging-data-and-creating-graphs.html#cb4-39" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">list</span>(<span class="at">update =</span> collapsed_data<span class="sc">$</span>update,</span>
+<span id="cb4-40"><a href="template-for-munging-data-and-creating-graphs.html#cb4-40" aria-hidden="true" tabindex="-1"></a>                               <span class="at">treatment =</span> collapsed_data<span class="sc">$</span>treatment,</span>
+<span id="cb4-41"><a href="template-for-munging-data-and-creating-graphs.html#cb4-41" aria-hidden="true" tabindex="-1"></a>                               <span class="at">Histogram_bins =</span> collapsed_data<span class="sc">$</span>Histogram_factor), sum)</span>
+<span id="cb4-42"><a href="template-for-munging-data-and-creating-graphs.html#cb4-42" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-43"><a href="template-for-munging-data-and-creating-graphs.html#cb4-43" aria-hidden="true" tabindex="-1"></a>  final_data </span>
+<span id="cb4-44"><a href="template-for-munging-data-and-creating-graphs.html#cb4-44" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="gather-settings-and-treatments" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Gather Settings and Treatments</h2>
+<p>General settings</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="template-for-munging-data-and-creating-graphs.html#cb5-1" aria-hidden="true" tabindex="-1"></a>folder <span class="ot">&lt;-</span> <span class="st">&quot;Data/&quot;</span> <span class="co">#Folder where datafiles are </span></span>
+<span id="cb5-2"><a href="template-for-munging-data-and-creating-graphs.html#cb5-2" aria-hidden="true" tabindex="-1"></a>treatments <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;PLR&quot;</span>, <span class="st">&quot;COI&quot;</span>) <span class="co">#Names of the treatments being tested - should match what is in filenames</span></span></code></pre></div>
+<p>Stacked histogram settings</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="template-for-munging-data-and-creating-graphs.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#separate_by vals indicate what the stacked histograms should be facet wrapped by</span></span>
+<span id="cb6-2"><a href="template-for-munging-data-and-creating-graphs.html#cb6-2" aria-hidden="true" tabindex="-1"></a>separate_by <span class="ot">&lt;-</span> <span class="st">&quot;SEED&quot;</span> </span>
+<span id="cb6-3"><a href="template-for-munging-data-and-creating-graphs.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#How stacked histogram bins should be collapsed and renamed</span></span>
+<span id="cb6-4"><a href="template-for-munging-data-and-creating-graphs.html#cb6-4" aria-hidden="true" tabindex="-1"></a>histogram_bins <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">Hist_0.0 =</span> <span class="st">&quot;0 to 0.2 (First bin)&quot;</span>, </span>
+<span id="cb6-5"><a href="template-for-munging-data-and-creating-graphs.html#cb6-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Hist_0.1 =</span> <span class="st">&quot;0 to 0.2 (First bin)&quot;</span>,</span>
+<span id="cb6-6"><a href="template-for-munging-data-and-creating-graphs.html#cb6-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Hist_0.2 =</span> <span class="st">&quot;0.2 to 0.4 (Second bin)&quot;</span>,</span>
+<span id="cb6-7"><a href="template-for-munging-data-and-creating-graphs.html#cb6-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Hist_0.3 =</span> <span class="st">&quot;0.2 to 0.4 (Second bin)&quot;</span>,</span>
+<span id="cb6-8"><a href="template-for-munging-data-and-creating-graphs.html#cb6-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Hist_0.4 =</span> <span class="st">&quot;0.4 to 0.6 (Third bin)&quot;</span>,</span>
+<span id="cb6-9"><a href="template-for-munging-data-and-creating-graphs.html#cb6-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Hist_0.5 =</span> <span class="st">&quot;0.4 to 0.6 (Third bin)&quot;</span>,</span>
+<span id="cb6-10"><a href="template-for-munging-data-and-creating-graphs.html#cb6-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Hist_0.6 =</span> <span class="st">&quot;0.6 to 0.8 (Fourth bin)&quot;</span>,</span>
+<span id="cb6-11"><a href="template-for-munging-data-and-creating-graphs.html#cb6-11" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Hist_0.7 =</span> <span class="st">&quot;0.6 to 0.8 (Fourth bin)&quot;</span>,</span>
+<span id="cb6-12"><a href="template-for-munging-data-and-creating-graphs.html#cb6-12" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Hist_0.8 =</span> <span class="st">&quot;0.8 to 1.0 (Fifth bin)&quot;</span>,</span>
+<span id="cb6-13"><a href="template-for-munging-data-and-creating-graphs.html#cb6-13" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Hist_0.9 =</span> <span class="st">&quot;0.8 to 1.0 (Fifth bin)&quot;</span>)</span></code></pre></div>
+</div>
+<div id="collect-and-munge-data" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Collect and Munge Data</h2>
+<p>Gather filenames</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="template-for-munging-data-and-creating-graphs.html#cb7-1" aria-hidden="true" tabindex="-1"></a>all_filenames <span class="ot">&lt;-</span> <span class="fu">list.files</span>(folder)</span>
+<span id="cb7-2"><a href="template-for-munging-data-and-creating-graphs.html#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="template-for-munging-data-and-creating-graphs.html#cb7-3" aria-hidden="true" tabindex="-1"></a>hostval_filenames <span class="ot">&lt;-</span> <span class="fu">str_subset</span>(all_filenames, <span class="st">&quot;HostVals&quot;</span>)</span>
+<span id="cb7-4"><a href="template-for-munging-data-and-creating-graphs.html#cb7-4" aria-hidden="true" tabindex="-1"></a>symvals_filenames <span class="ot">&lt;-</span> <span class="fu">str_subset</span>(all_filenames, <span class="st">&quot;SymVals&quot;</span>)</span></code></pre></div>
+<p>Combine time series data for all subsets of datafiles</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="template-for-munging-data-and-creating-graphs.html#cb8-1" aria-hidden="true" tabindex="-1"></a>hostvals <span class="ot">&lt;-</span> <span class="fu">combine_time_data</span>(hostval_filenames, folder, treatments)</span>
+<span id="cb8-2"><a href="template-for-munging-data-and-creating-graphs.html#cb8-2" aria-hidden="true" tabindex="-1"></a>symvals <span class="ot">&lt;-</span> <span class="fu">combine_time_data</span>(phagevals_filenames, folder, treatments)</span></code></pre></div>
+<p>Rearrange time series data into stacked histogram data</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="template-for-munging-data-and-creating-graphs.html#cb9-1" aria-hidden="true" tabindex="-1"></a>symval_histdata <span class="ot">&lt;-</span> <span class="fu">combine_histogram_data</span>(symvals, separate_by, histogram_bins)</span></code></pre></div>
+</div>
+<div id="create-graphs" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Create graphs</h2>
+<div id="graph-templates" class="section level3" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Graph templates</h3>
+<p>Time Series template</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="template-for-munging-data-and-creating-graphs.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#All values with this format: &lt;VAL_NAME&gt; need to be filled in</span></span>
+<span id="cb10-2"><a href="template-for-munging-data-and-creating-graphs.html#cb10-2" aria-hidden="true" tabindex="-1"></a>timeseries_graph <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span> <span class="sc">&lt;</span>TIME_SERIES_DATASET_NAME<span class="sc">&gt;</span>,</span>
+<span id="cb10-3"><a href="template-for-munging-data-and-creating-graphs.html#cb10-3" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">aes</span>(<span class="at">x=</span>update, <span class="at">y=</span> <span class="sc">&lt;</span>Y_AXIS_VAL<span class="sc">&gt;</span>, </span>
+<span id="cb10-4"><a href="template-for-munging-data-and-creating-graphs.html#cb10-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">group=</span><span class="sc">&lt;</span>GROUP_VAL_NAME<span class="sc">&gt;</span>, <span class="at">colour=</span><span class="sc">&lt;</span>GROUP_VAL_NAME<span class="sc">&gt;</span>)) <span class="sc">+</span> </span>
+<span id="cb10-5"><a href="template-for-munging-data-and-creating-graphs.html#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="sc">&lt;</span>Y_AXIS_LABEL<span class="sc">&gt;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Updates&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb10-6"><a href="template-for-munging-data-and-creating-graphs.html#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="sc">&lt;</span>GROUP_VAL_NAME<span class="sc">&gt;</span>, <span class="at">fill=</span><span class="sc">&lt;</span>GROUP_VAL_NAME<span class="sc">&gt;</span>),</span>
+<span id="cb10-7"><a href="template-for-munging-data-and-creating-graphs.html#cb10-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">fun.data=</span><span class="st">&quot;mean_cl_boot&quot;</span>, <span class="at">geom=</span><span class="fu">c</span>(<span class="st">&quot;smooth&quot;</span>), <span class="at">se=</span><span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb10-8"><a href="template-for-munging-data-and-creating-graphs.html#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">&#39;white&#39;</span>, <span class="at">colour=</span><span class="st">&#39;black&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb10-9"><a href="template-for-munging-data-and-creating-graphs.html#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(), <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb10-10"><a href="template-for-munging-data-and-creating-graphs.html#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill=</span><span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb10-11"><a href="template-for-munging-data-and-creating-graphs.html#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values=</span><span class="fu">viridis</span>(<span class="fu">nlevels</span>(<span class="sc">&lt;</span>TIME_SERIES_DATASET_NAME<span class="sc">&gt;</span><span class="er">$&lt;</span>GROUP_VAL_NAME<span class="sc">&gt;</span>))) <span class="sc">+</span> </span>
+<span id="cb10-12"><a href="template-for-munging-data-and-creating-graphs.html#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">viridis</span>(<span class="fu">nlevels</span>(<span class="sc">&lt;</span>TIME_SERIES_DATASET_NAME<span class="sc">&gt;</span><span class="er">$&lt;</span>GROUP_VAL_NAME<span class="sc">&gt;</span>)))</span>
+<span id="cb10-13"><a href="template-for-munging-data-and-creating-graphs.html#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="template-for-munging-data-and-creating-graphs.html#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Facet wrapping is optional, but can be used if multiple treatments are being used</span></span>
+<span id="cb10-15"><a href="template-for-munging-data-and-creating-graphs.html#cb10-15" aria-hidden="true" tabindex="-1"></a>timeseries_graph <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">&lt;</span>GROUP_VAL2_NAME<span class="sc">&gt;</span>) </span></code></pre></div>
+<p>Stacked Histogram template</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="template-for-munging-data-and-creating-graphs.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#All values with this format: &lt;VAL_NAME&gt; need to be filled in</span></span>
+<span id="cb11-2"><a href="template-for-munging-data-and-creating-graphs.html#cb11-2" aria-hidden="true" tabindex="-1"></a>stackedhistogram <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="sc">&lt;</span>HISTOGRAM_DATASET_NAME<span class="sc">&gt;</span>, </span>
+<span id="cb11-3"><a href="template-for-munging-data-and-creating-graphs.html#cb11-3" aria-hidden="true" tabindex="-1"></a>                                       <span class="fu">aes</span>(update, count)) <span class="sc">+</span> </span>
+<span id="cb11-4"><a href="template-for-munging-data-and-creating-graphs.html#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="fu">aes</span>(<span class="at">fill=</span>Histogram_bins), <span class="at">position=</span><span class="st">&#39;stack&#39;</span>) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="template-for-munging-data-and-creating-graphs.html#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="sc">&lt;</span>Y_AXIS_LABEL<span class="sc">&gt;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Evolutionary time (in updates)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="template-for-munging-data-and-creating-graphs.html#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="sc">&lt;</span>LEGEND_TITLE<span class="sc">&gt;</span>,<span class="at">values=</span><span class="fu">viridis</span>(<span class="fu">nlevels</span>(<span class="sc">&lt;</span>HISTOGRAM_DATASET_NAME<span class="sc">&gt;</span><span class="er">$</span>Histogram_bins))) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="template-for-munging-data-and-creating-graphs.html#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>treatment) <span class="sc">+</span> </span>
+<span id="cb11-8"><a href="template-for-munging-data-and-creating-graphs.html#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">&#39;light grey&#39;</span>, <span class="at">colour=</span><span class="st">&#39;black&#39;</span>)) <span class="sc">+</span> </span>
+<span id="cb11-9"><a href="template-for-munging-data-and-creating-graphs.html#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(), <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> </span>
+<span id="cb11-10"><a href="template-for-munging-data-and-creating-graphs.html#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill=</span><span class="cn">FALSE</span>) <span class="sc">+</span> <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>())</span>
+<span id="cb11-11"><a href="template-for-munging-data-and-creating-graphs.html#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="template-for-munging-data-and-creating-graphs.html#cb11-12" aria-hidden="true" tabindex="-1"></a>stackedhistogram</span></code></pre></div>
+</div>
+<div id="examples" class="section level3" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> Examples</h3>
+<p>Host count</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="template-for-munging-data-and-creating-graphs.html#cb12-1" aria-hidden="true" tabindex="-1"></a>hostcount_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>hostvals,</span>
+<span id="cb12-2"><a href="template-for-munging-data-and-creating-graphs.html#cb12-2" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">aes</span>(<span class="at">x=</span>update, <span class="at">y=</span>count, </span>
+<span id="cb12-3"><a href="template-for-munging-data-and-creating-graphs.html#cb12-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">group=</span>PLR, <span class="at">colour=</span>PLR)) <span class="sc">+</span> </span>
+<span id="cb12-4"><a href="template-for-munging-data-and-creating-graphs.html#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Host Count&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Updates&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb12-5"><a href="template-for-munging-data-and-creating-graphs.html#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="fu">aes</span>(<span class="at">color=</span>PLR, <span class="at">fill=</span>PLR),</span>
+<span id="cb12-6"><a href="template-for-munging-data-and-creating-graphs.html#cb12-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">fun.data=</span><span class="st">&quot;mean_cl_boot&quot;</span>, <span class="at">geom=</span><span class="fu">c</span>(<span class="st">&quot;smooth&quot;</span>), <span class="at">se=</span><span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb12-7"><a href="template-for-munging-data-and-creating-graphs.html#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">&#39;white&#39;</span>, <span class="at">colour=</span><span class="st">&#39;black&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="template-for-munging-data-and-creating-graphs.html#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(), <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb12-9"><a href="template-for-munging-data-and-creating-graphs.html#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill=</span><span class="cn">FALSE</span>) <span class="sc">+</span> <span class="fu">scale_colour_manual</span>(<span class="at">values=</span><span class="fu">viridis</span>(<span class="fu">nlevels</span>(hostvals<span class="sc">$</span>PLR))) <span class="sc">+</span> </span>
+<span id="cb12-10"><a href="template-for-munging-data-and-creating-graphs.html#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">viridis</span>(<span class="fu">nlevels</span>(hostvals<span class="sc">$</span>PLR)))</span>
+<span id="cb12-11"><a href="template-for-munging-data-and-creating-graphs.html#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="template-for-munging-data-and-creating-graphs.html#cb12-12" aria-hidden="true" tabindex="-1"></a>hostcount_plot <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>COI)</span></code></pre></div>
+<p>Sym interaction vals plot</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="template-for-munging-data-and-creating-graphs.html#cb13-1" aria-hidden="true" tabindex="-1"></a>symintval_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>symvals, <span class="fu">aes</span>(<span class="at">x=</span>update, <span class="at">y=</span>mean_intval,</span>
+<span id="cb13-2"><a href="template-for-munging-data-and-creating-graphs.html#cb13-2" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">group=</span>PLR, <span class="at">color=</span>PLR)) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="template-for-munging-data-and-creating-graphs.html#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Symbiont Interaction value&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Updates&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb13-4"><a href="template-for-munging-data-and-creating-graphs.html#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="fu">aes</span>(<span class="at">color=</span>PLR, <span class="at">fill=</span>PLR),</span>
+<span id="cb13-5"><a href="template-for-munging-data-and-creating-graphs.html#cb13-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">fun.data=</span><span class="st">&quot;mean_cl_boot&quot;</span>, <span class="at">geom=</span><span class="fu">c</span>(<span class="st">&quot;smooth&quot;</span>), <span class="at">se=</span><span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb13-6"><a href="template-for-munging-data-and-creating-graphs.html#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">&#39;white&#39;</span>, <span class="at">colour=</span><span class="st">&#39;black&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb13-7"><a href="template-for-munging-data-and-creating-graphs.html#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(), <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb13-8"><a href="template-for-munging-data-and-creating-graphs.html#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill=</span><span class="cn">FALSE</span>) <span class="sc">+</span> <span class="fu">scale_colour_manual</span>(<span class="at">values=</span><span class="fu">viridis</span>(<span class="fu">nlevels</span>(symvals<span class="sc">$</span>PLR))) <span class="sc">+</span> </span>
+<span id="cb13-9"><a href="template-for-munging-data-and-creating-graphs.html#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">viridis</span>(<span class="fu">nlevels</span>(symvals<span class="sc">$</span>PLR)))</span>
+<span id="cb13-10"><a href="template-for-munging-data-and-creating-graphs.html#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="template-for-munging-data-and-creating-graphs.html#cb13-11" aria-hidden="true" tabindex="-1"></a>symintval_plot <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>COI)</span></code></pre></div>
+<p>Sym interaction vals stacked histogram</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="template-for-munging-data-and-creating-graphs.html#cb14-1" aria-hidden="true" tabindex="-1"></a>symval_stackedhistogram <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(symval_histdata, </span>
+<span id="cb14-2"><a href="template-for-munging-data-and-creating-graphs.html#cb14-2" aria-hidden="true" tabindex="-1"></a>                                       <span class="fu">aes</span>(update, count)) <span class="sc">+</span> </span>
+<span id="cb14-3"><a href="template-for-munging-data-and-creating-graphs.html#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="fu">aes</span>(<span class="at">fill=</span>Histogram_bins), <span class="at">position=</span><span class="st">&#39;stack&#39;</span>) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="template-for-munging-data-and-creating-graphs.html#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Count of Symbionts with Phenotype&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Evolutionary time (in updates)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="template-for-munging-data-and-creating-graphs.html#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="st">&quot;Interaction Val</span><span class="sc">\n</span><span class="st"> Phenotypes&quot;</span>,<span class="at">values=</span><span class="fu">viridis</span>(<span class="fu">nlevels</span>(symval_histdata<span class="sc">$</span>Histogram_bins))) <span class="sc">+</span></span>
+<span id="cb14-6"><a href="template-for-munging-data-and-creating-graphs.html#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>treatment) <span class="sc">+</span> </span>
+<span id="cb14-7"><a href="template-for-munging-data-and-creating-graphs.html#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">&#39;light grey&#39;</span>, <span class="at">colour=</span><span class="st">&#39;black&#39;</span>)) <span class="sc">+</span> </span>
+<span id="cb14-8"><a href="template-for-munging-data-and-creating-graphs.html#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(), <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> </span>
+<span id="cb14-9"><a href="template-for-munging-data-and-creating-graphs.html#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill=</span><span class="cn">FALSE</span>) <span class="sc">+</span> <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>())</span>
+<span id="cb14-10"><a href="template-for-munging-data-and-creating-graphs.html#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="template-for-munging-data-and-creating-graphs.html#cb14-11" aria-hidden="true" tabindex="-1"></a>symval_stackedhistogram</span></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="configuration-settings.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="benefit-only---induction-off.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-template.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Evo-of-Lysogeny.pdf", "Evo-of-Lysogeny.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
