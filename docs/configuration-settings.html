@@ -24,7 +24,7 @@
 <meta name="author" content="Alison Cameron, Seth Dorchen, and Anya Vostinar" />
 
 
-<meta name="date" content="2021-08-27" />
+<meta name="date" content="2021-10-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -242,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>LYSIS_CHANCE represents the chance of lysis for the original population of phage. For some experiments this was a random distribution (indicated by a value of -1), and for others we started the population at lysogenic (0), temperate (0.5), or lytic (1).</p>
 <p>PROPHAGE_LOSS_RATE represents the chance that a lysogenic phage will be killed off during an update. This functions to provide and influx of susceptible hosts for other phage to infect. We use three values throughout our experiments: 0.0, 0.025, and 0.05. 0 typically selects for lysogenic phage, 0.025 for temperate phage, and 0.05 for lytic phage.</p>
 <p>BENEFIT_TO_HOST is a switch that allows lysogenic phage to interact with their hosts resources. We toggle this switch across different experiments to explore its effect on the selection of lysis vs. lysogeny.</p>
-<p>PHAGE_INC_VAL</p>
+<p>PHAGE_INC_VAL interacts with the HOST_INC_VAL to determine how well the bacteriophage and host bacterium are a match for each other. This is done by computing the difference between the two incorporation values; the smaller the difference, the more helpful a phage is to its host. This is an abstract representation of the insertion of phage DNA into bacterial DNA, and how successful that may be. HOST_INC_VAL was held constant at 1 for all experiments, while the PHAGE_INC_VAL was either 0 (harmful), 0.5 (neutral), or 1 (beneficial).</p>
 </div>
 <div id="other-relevant-settings" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Other Relevant Settings</h2>
@@ -258,12 +258,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>SYM_LIMIT indicates how many phage can infect a singular host. We only allow one phage per host and thus use a value of 1.</p>
 <p>MUTATE_INDUCTION_CHANCE is a switch that determines whether or not the chance of induction will mutate for phage offspring. This switch is turned on for our experiments.</p>
 <p>BURST_TIME acts as a timer that determines how long it takes for a lytic phage to burst. Each lytic phage’s burst timer is incremented (from a normal distribution centered at 1 with a standard deviation of 1) every update. Once the phage’s burst timer reaches this configuration setting as a threshold, the phage offspring are released into the world and the host bacterium dies. We use a value of 100 for all experiments.</p>
-<p>HOST_INC_VAL</p>
-<p>MUTATE_HOST_INC_VAL</p>
-<p>MUTATE_PHAGE_INC_VAL</p>
-<p>SYM_LYSIS_RES</p>
-<p>START_MOI</p>
-<p>FREE_LIVING_SYMS</p>
+<p>HOST_INC_VAL represents the compatibility of bacterial hosts with lysogenic phage to decide the impact of prophage DNA incorporation on the host metabolism. We keep the HOST_INC_VAL at a value of 1 for all experiments.</p>
+<p>MUTATE_INC_VAL is a switch that determines whether or not the phage and host incorporation values will mutate for both populations. Mutations are turned on for all experiments.</p>
+<p>SYM_LYSIS_RES represents the amount of resources that a lytic phage requires to reproduce once within the host prior to bursting. Given enough resources, a lytic phage can reproduce multiple times before lysing the host cell.</p>
+<p>START_MOI represents the initial ratio of the symbiont population to the bacteria population. During experimentation we set the START_MOI to 0.5 and let the population grow to a multiplicity of infection ratio of 1.</p>
+<p>FREE_LIVING_SYMS is a switch representing whether or not the phage can live outside of their hosts. While phage require a bacterium to reproduce, this determines if they can survive during their lifetime without being hosted. For all experiments, we allow symbionts to live outside of their hosts if they choose to do so.</p>
 
 </div>
 </div>
