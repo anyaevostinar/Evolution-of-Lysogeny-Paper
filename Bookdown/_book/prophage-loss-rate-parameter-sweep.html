@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Prophage Loss Rate Parameter Sweep | Evolution of Lysogeny Supplemental Materials</title>
+  <meta name="description" content="Supplemental Materials" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Prophage Loss Rate Parameter Sweep | Evolution of Lysogeny Supplemental Materials" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Supplemental Materials" />
+  <meta name="github-repo" content="anyaevostinar/Evolution-of-Lysogeny-Paper" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Prophage Loss Rate Parameter Sweep | Evolution of Lysogeny Supplemental Materials" />
+  
+  <meta name="twitter:description" content="Supplemental Materials" />
+  
+
+<meta name="author" content="Alison Cameron, Seth Dorchen, and Anya Vostinar" />
+
+
+<meta name="date" content="2021-10-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="template-for-munging-data-and-creating-graphs.html"/>
+<link rel="next" href="benefit-only---induction-off.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Supplemental Materials</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#about-our-supplemental-material"><i class="fa fa-check"></i><b>1.1</b> About our supplemental material</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#contributing-authors"><i class="fa fa-check"></i><b>1.2</b> Contributing Authors</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#research-overview"><i class="fa fa-check"></i><b>1.3</b> Research Overview</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#abstract"><i class="fa fa-check"></i><b>1.3.1</b> Abstract</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#experiments"><i class="fa fa-check"></i><b>1.3.2</b> Experiments</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#results"><i class="fa fa-check"></i><b>1.3.3</b> Results</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-availability.html"><a href="data-availability.html"><i class="fa fa-check"></i><b>2</b> Data Availability</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-availability.html"><a href="data-availability.html#source-code"><i class="fa fa-check"></i><b>2.1</b> Source Code</a></li>
+<li class="chapter" data-level="2.2" data-path="data-availability.html"><a href="data-availability.html#experimental-results"><i class="fa fa-check"></i><b>2.2</b> Experimental Results</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="configuration-settings.html"><a href="configuration-settings.html"><i class="fa fa-check"></i><b>3</b> Configuration Settings</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="configuration-settings.html"><a href="configuration-settings.html#experimental-settings"><i class="fa fa-check"></i><b>3.1</b> Experimental Settings</a></li>
+<li class="chapter" data-level="3.2" data-path="configuration-settings.html"><a href="configuration-settings.html#other-relevant-settings"><i class="fa fa-check"></i><b>3.2</b> Other Relevant Settings</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="template-for-munging-data-and-creating-graphs.html"><a href="template-for-munging-data-and-creating-graphs.html"><i class="fa fa-check"></i><b>4</b> Template for Munging Data and Creating Graphs</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="template-for-munging-data-and-creating-graphs.html"><a href="template-for-munging-data-and-creating-graphs.html#load-data-munging-functions"><i class="fa fa-check"></i><b>4.1</b> Load Data Munging Functions</a></li>
+<li class="chapter" data-level="4.2" data-path="template-for-munging-data-and-creating-graphs.html"><a href="template-for-munging-data-and-creating-graphs.html#gather-settings-and-treatments"><i class="fa fa-check"></i><b>4.2</b> Gather Settings and Treatments</a></li>
+<li class="chapter" data-level="4.3" data-path="template-for-munging-data-and-creating-graphs.html"><a href="template-for-munging-data-and-creating-graphs.html#collect-and-munge-data"><i class="fa fa-check"></i><b>4.3</b> Collect and Munge Data</a></li>
+<li class="chapter" data-level="4.4" data-path="template-for-munging-data-and-creating-graphs.html"><a href="template-for-munging-data-and-creating-graphs.html#create-graphs"><i class="fa fa-check"></i><b>4.4</b> Create graphs</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="template-for-munging-data-and-creating-graphs.html"><a href="template-for-munging-data-and-creating-graphs.html#graph-templates"><i class="fa fa-check"></i><b>4.4.1</b> Graph templates</a></li>
+<li class="chapter" data-level="4.4.2" data-path="template-for-munging-data-and-creating-graphs.html"><a href="template-for-munging-data-and-creating-graphs.html#examples"><i class="fa fa-check"></i><b>4.4.2</b> Examples</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="prophage-loss-rate-parameter-sweep.html"><a href="prophage-loss-rate-parameter-sweep.html"><i class="fa fa-check"></i><b>5</b> Prophage Loss Rate Parameter Sweep</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="prophage-loss-rate-parameter-sweep.html"><a href="prophage-loss-rate-parameter-sweep.html#gather-settings-and-treatments-1"><i class="fa fa-check"></i><b>5.1</b> Gather Settings and Treatments</a></li>
+<li class="chapter" data-level="5.2" data-path="prophage-loss-rate-parameter-sweep.html"><a href="prophage-loss-rate-parameter-sweep.html#collect-and-munge-data-1"><i class="fa fa-check"></i><b>5.2</b> Collect and Munge Data</a></li>
+<li class="chapter" data-level="5.3" data-path="prophage-loss-rate-parameter-sweep.html"><a href="prophage-loss-rate-parameter-sweep.html#generate-graphs"><i class="fa fa-check"></i><b>5.3</b> Generate Graphs</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="prophage-loss-rate-parameter-sweep.html"><a href="prophage-loss-rate-parameter-sweep.html#host-graphs"><i class="fa fa-check"></i><b>5.3.1</b> Host graphs</a></li>
+<li class="chapter" data-level="5.3.2" data-path="prophage-loss-rate-parameter-sweep.html"><a href="prophage-loss-rate-parameter-sweep.html#phage-graphs"><i class="fa fa-check"></i><b>5.3.2</b> Phage graphs</a></li>
+<li class="chapter" data-level="5.3.3" data-path="prophage-loss-rate-parameter-sweep.html"><a href="prophage-loss-rate-parameter-sweep.html#stacked-histograms"><i class="fa fa-check"></i><b>5.3.3</b> Stacked Histograms</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="benefit-only---induction-off.html"><a href="benefit-only---induction-off.html"><i class="fa fa-check"></i><b>6</b> Benefit Only - Induction off</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="benefit-only---induction-off.html"><a href="benefit-only---induction-off.html#gather-settings-and-treatments-2"><i class="fa fa-check"></i><b>6.1</b> Gather Settings and Treatments</a></li>
+<li class="chapter" data-level="6.2" data-path="benefit-only---induction-off.html"><a href="benefit-only---induction-off.html#collect-and-munge-data-2"><i class="fa fa-check"></i><b>6.2</b> Collect and Munge Data</a></li>
+<li class="chapter" data-level="6.3" data-path="benefit-only---induction-off.html"><a href="benefit-only---induction-off.html#generate-graphs-1"><i class="fa fa-check"></i><b>6.3</b> Generate Graphs</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="benefit-only---induction-off.html"><a href="benefit-only---induction-off.html#host-graphs-1"><i class="fa fa-check"></i><b>6.3.1</b> Host graphs</a></li>
+<li class="chapter" data-level="6.3.2" data-path="benefit-only---induction-off.html"><a href="benefit-only---induction-off.html#phage-graphs-1"><i class="fa fa-check"></i><b>6.3.2</b> Phage graphs</a></li>
+<li class="chapter" data-level="6.3.3" data-path="benefit-only---induction-off.html"><a href="benefit-only---induction-off.html#stacked-histograms-1"><i class="fa fa-check"></i><b>6.3.3</b> Stacked Histograms</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="induction-only---benefit-off.html"><a href="induction-only---benefit-off.html"><i class="fa fa-check"></i><b>7</b> Induction Only - Benefit Off</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="induction-only---benefit-off.html"><a href="induction-only---benefit-off.html#gather-settings-and-treatments-3"><i class="fa fa-check"></i><b>7.1</b> Gather Settings and Treatments</a></li>
+<li class="chapter" data-level="7.2" data-path="induction-only---benefit-off.html"><a href="induction-only---benefit-off.html#collect-and-munge-data-3"><i class="fa fa-check"></i><b>7.2</b> Collect and Munge Data</a></li>
+<li class="chapter" data-level="7.3" data-path="induction-only---benefit-off.html"><a href="induction-only---benefit-off.html#generate-graphs-2"><i class="fa fa-check"></i><b>7.3</b> Generate Graphs</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="induction-only---benefit-off.html"><a href="induction-only---benefit-off.html#host-graphs-2"><i class="fa fa-check"></i><b>7.3.1</b> Host graphs</a></li>
+<li class="chapter" data-level="7.3.2" data-path="induction-only---benefit-off.html"><a href="induction-only---benefit-off.html#phage-graphs-2"><i class="fa fa-check"></i><b>7.3.2</b> Phage graphs</a></li>
+<li class="chapter" data-level="7.3.3" data-path="induction-only---benefit-off.html"><a href="induction-only---benefit-off.html#stacked-histograms-2"><i class="fa fa-check"></i><b>7.3.3</b> Stacked Histograms</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="induction-and-benefit-with-non-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-non-random-starting-incorporation-vals.html"><i class="fa fa-check"></i><b>8</b> Induction and Benefit with Non-Random Starting Incorporation Vals</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="induction-and-benefit-with-non-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-non-random-starting-incorporation-vals.html#gather-settings-and-treatments-4"><i class="fa fa-check"></i><b>8.1</b> Gather Settings and Treatments</a></li>
+<li class="chapter" data-level="8.2" data-path="induction-and-benefit-with-non-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-non-random-starting-incorporation-vals.html#munge-data"><i class="fa fa-check"></i><b>8.2</b> Munge Data</a></li>
+<li class="chapter" data-level="8.3" data-path="induction-and-benefit-with-non-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-non-random-starting-incorporation-vals.html#create-graphs-1"><i class="fa fa-check"></i><b>8.3</b> Create Graphs</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="induction-and-benefit-with-non-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-non-random-starting-incorporation-vals.html#host-graphs-3"><i class="fa fa-check"></i><b>8.3.1</b> Host graphs</a></li>
+<li class="chapter" data-level="8.3.2" data-path="induction-and-benefit-with-non-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-non-random-starting-incorporation-vals.html#phage-graphs-3"><i class="fa fa-check"></i><b>8.3.2</b> Phage graphs</a></li>
+<li class="chapter" data-level="8.3.3" data-path="induction-and-benefit-with-non-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-non-random-starting-incorporation-vals.html#stacked-histograms-3"><i class="fa fa-check"></i><b>8.3.3</b> Stacked Histograms</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="induction-and-benefit-with-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-random-starting-incorporation-vals.html"><i class="fa fa-check"></i><b>9</b> Induction and Benefit with Random Starting Incorporation Vals</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="induction-and-benefit-with-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-random-starting-incorporation-vals.html#gather-settings-and-treatments-5"><i class="fa fa-check"></i><b>9.1</b> Gather Settings and Treatments</a></li>
+<li class="chapter" data-level="9.2" data-path="induction-and-benefit-with-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-random-starting-incorporation-vals.html#munge-data-1"><i class="fa fa-check"></i><b>9.2</b> Munge Data</a></li>
+<li class="chapter" data-level="9.3" data-path="induction-and-benefit-with-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-random-starting-incorporation-vals.html#create-graphs-2"><i class="fa fa-check"></i><b>9.3</b> Create Graphs</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="induction-and-benefit-with-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-random-starting-incorporation-vals.html#host-graphs-4"><i class="fa fa-check"></i><b>9.3.1</b> Host graphs</a></li>
+<li class="chapter" data-level="9.3.2" data-path="induction-and-benefit-with-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-random-starting-incorporation-vals.html#phage-graphs-4"><i class="fa fa-check"></i><b>9.3.2</b> Phage graphs</a></li>
+<li class="chapter" data-level="9.3.3" data-path="induction-and-benefit-with-random-starting-incorporation-vals.html"><a href="induction-and-benefit-with-random-starting-incorporation-vals.html#stacked-histograms-4"><i class="fa fa-check"></i><b>9.3.3</b> Stacked Histograms</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Evolution of Lysogeny Supplemental Materials</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="prophage-loss-rate-parameter-sweep" class="section level1" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Prophage Loss Rate Parameter Sweep</h1>
+<p>The following includes the R scripts that we used to generate our graphs for the data where there we did a parameter sweep on the Prophage Loss Rate to determine which values to use in the remainder of our experiments. There was no induction and no direct benefit for hosts with lysogenic phage.</p>
+<div id="gather-settings-and-treatments-1" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Gather Settings and Treatments</h2>
+<p>General settings</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="prophage-loss-rate-parameter-sweep.html#cb15-1" aria-hidden="true" tabindex="-1"></a>folder <span class="ot">&lt;-</span> <span class="st">&quot;Data/PLR_parameter_sweep/&quot;</span> <span class="co">#Folder where datafiles are </span></span>
+<span id="cb15-2"><a href="prophage-loss-rate-parameter-sweep.html#cb15-2" aria-hidden="true" tabindex="-1"></a>treatments <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;PLR&quot;</span>) <span class="co">#Names of the treatments being tested - should match what is in filenames</span></span></code></pre></div>
+<p>Stacked histogram settings</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="prophage-loss-rate-parameter-sweep.html#cb16-1" aria-hidden="true" tabindex="-1"></a>lysis_separate_by <span class="ot">&lt;-</span> <span class="st">&quot;PLR&quot;</span> <span class="co">#Facet wrap lysis chance stacked histogram by Prophage Loss Rate</span></span>
+<span id="cb16-2"><a href="prophage-loss-rate-parameter-sweep.html#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="prophage-loss-rate-parameter-sweep.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#How lysis chance stacked histogram bins should be collapsed and renamed</span></span>
+<span id="cb16-4"><a href="prophage-loss-rate-parameter-sweep.html#cb16-4" aria-hidden="true" tabindex="-1"></a>lysis_histogram_bins <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">Hist_0.0 =</span> <span class="st">&quot;0 to 0.2 (Highly lysogenic)&quot;</span>,</span>
+<span id="cb16-5"><a href="prophage-loss-rate-parameter-sweep.html#cb16-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">Hist_0.1 =</span> <span class="st">&quot;0 to 0.2 (Highly lysogenic)&quot;</span>,</span>
+<span id="cb16-6"><a href="prophage-loss-rate-parameter-sweep.html#cb16-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">Hist_0.2 =</span> <span class="st">&quot;0.2 to 0.4 (Moderately lysogenic)&quot;</span>,</span>
+<span id="cb16-7"><a href="prophage-loss-rate-parameter-sweep.html#cb16-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">Hist_0.3 =</span> <span class="st">&quot;0.2 to 0.4 (Moderately lysogenic)&quot;</span>,</span>
+<span id="cb16-8"><a href="prophage-loss-rate-parameter-sweep.html#cb16-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">Hist_0.4 =</span> <span class="st">&quot;0.4 to 0.6 (Temperate)&quot;</span>,</span>
+<span id="cb16-9"><a href="prophage-loss-rate-parameter-sweep.html#cb16-9" aria-hidden="true" tabindex="-1"></a>                          <span class="at">Hist_0.5 =</span> <span class="st">&quot;0.4 to 0.6 (Temperate)&quot;</span>,</span>
+<span id="cb16-10"><a href="prophage-loss-rate-parameter-sweep.html#cb16-10" aria-hidden="true" tabindex="-1"></a>                          <span class="at">Hist_0.6 =</span> <span class="st">&quot;0.6 to 0.8 (Moderately lytic)&quot;</span>,</span>
+<span id="cb16-11"><a href="prophage-loss-rate-parameter-sweep.html#cb16-11" aria-hidden="true" tabindex="-1"></a>                          <span class="at">Hist_0.7 =</span> <span class="st">&quot;0.6 to 0.8 (Moderately lytic)&quot;</span>,</span>
+<span id="cb16-12"><a href="prophage-loss-rate-parameter-sweep.html#cb16-12" aria-hidden="true" tabindex="-1"></a>                          <span class="at">Hist_0.8 =</span> <span class="st">&quot;0.8 to 1.0 (Highly lytic)&quot;</span>,</span>
+<span id="cb16-13"><a href="prophage-loss-rate-parameter-sweep.html#cb16-13" aria-hidden="true" tabindex="-1"></a>                          <span class="at">Hist_0.9 =</span> <span class="st">&quot;0.8 to 1.0 (Highly lytic)&quot;</span>)</span></code></pre></div>
+</div>
+<div id="collect-and-munge-data-1" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Collect and Munge Data</h2>
+<p>Gather filenames</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="prophage-loss-rate-parameter-sweep.html#cb17-1" aria-hidden="true" tabindex="-1"></a>all_filenames <span class="ot">&lt;-</span> <span class="fu">list.files</span>(folder)</span>
+<span id="cb17-2"><a href="prophage-loss-rate-parameter-sweep.html#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="prophage-loss-rate-parameter-sweep.html#cb17-3" aria-hidden="true" tabindex="-1"></a>freeliving_filenames <span class="ot">&lt;-</span> <span class="fu">str_subset</span>(all_filenames, <span class="st">&quot;FreeLivingSyms&quot;</span>)</span>
+<span id="cb17-4"><a href="prophage-loss-rate-parameter-sweep.html#cb17-4" aria-hidden="true" tabindex="-1"></a>hostval_filenames <span class="ot">&lt;-</span> <span class="fu">str_subset</span>(all_filenames, <span class="st">&quot;HostVals&quot;</span>)</span>
+<span id="cb17-5"><a href="prophage-loss-rate-parameter-sweep.html#cb17-5" aria-hidden="true" tabindex="-1"></a>lysischance_filenames <span class="ot">&lt;-</span> <span class="fu">str_subset</span>(all_filenames, <span class="st">&quot;LysisChance&quot;</span>)</span>
+<span id="cb17-6"><a href="prophage-loss-rate-parameter-sweep.html#cb17-6" aria-hidden="true" tabindex="-1"></a>phagevals_filenames <span class="ot">&lt;-</span> <span class="fu">str_subset</span>(all_filenames, <span class="st">&quot;SymVals&quot;</span>)</span></code></pre></div>
+<p>Combine time series data for all subsets of datafiles</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="prophage-loss-rate-parameter-sweep.html#cb18-1" aria-hidden="true" tabindex="-1"></a>freeliving <span class="ot">&lt;-</span> <span class="fu">combine_time_data</span>(freeliving_filenames, folder, treatments)</span>
+<span id="cb18-2"><a href="prophage-loss-rate-parameter-sweep.html#cb18-2" aria-hidden="true" tabindex="-1"></a>hostvals <span class="ot">&lt;-</span> <span class="fu">combine_time_data</span>(hostval_filenames, folder, treatments)</span>
+<span id="cb18-3"><a href="prophage-loss-rate-parameter-sweep.html#cb18-3" aria-hidden="true" tabindex="-1"></a>lysischances <span class="ot">&lt;-</span> <span class="fu">combine_time_data</span>(lysischance_filenames, folder, treatments)</span>
+<span id="cb18-4"><a href="prophage-loss-rate-parameter-sweep.html#cb18-4" aria-hidden="true" tabindex="-1"></a>phagevals <span class="ot">&lt;-</span> <span class="fu">combine_time_data</span>(phagevals_filenames, folder, treatments)</span></code></pre></div>
+<p>Rearrange time series data into stacked histogram data</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="prophage-loss-rate-parameter-sweep.html#cb19-1" aria-hidden="true" tabindex="-1"></a>lysis_histdata <span class="ot">&lt;-</span> <span class="fu">combine_histogram_data</span>(lysischances, </span>
+<span id="cb19-2"><a href="prophage-loss-rate-parameter-sweep.html#cb19-2" aria-hidden="true" tabindex="-1"></a>                                         lysis_separate_by, </span>
+<span id="cb19-3"><a href="prophage-loss-rate-parameter-sweep.html#cb19-3" aria-hidden="true" tabindex="-1"></a>                                         lysis_histogram_bins)</span></code></pre></div>
+</div>
+<div id="generate-graphs" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Generate Graphs</h2>
+<div id="host-graphs" class="section level3" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Host graphs</h3>
+<p>Host count</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="prophage-loss-rate-parameter-sweep.html#cb20-1" aria-hidden="true" tabindex="-1"></a>hostcount_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>hostvals,</span>
+<span id="cb20-2"><a href="prophage-loss-rate-parameter-sweep.html#cb20-2" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">aes</span>(<span class="at">x=</span>update, <span class="at">y=</span>count, </span>
+<span id="cb20-3"><a href="prophage-loss-rate-parameter-sweep.html#cb20-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">group=</span>PLR, <span class="at">colour=</span>PLR)) <span class="sc">+</span> </span>
+<span id="cb20-4"><a href="prophage-loss-rate-parameter-sweep.html#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Host Count&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Updates&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb20-5"><a href="prophage-loss-rate-parameter-sweep.html#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="fu">aes</span>(<span class="at">color=</span>PLR, <span class="at">fill=</span>PLR),</span>
+<span id="cb20-6"><a href="prophage-loss-rate-parameter-sweep.html#cb20-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">fun.data=</span><span class="st">&quot;mean_cl_boot&quot;</span>, <span class="at">geom=</span><span class="fu">c</span>(<span class="st">&quot;smooth&quot;</span>), <span class="at">se=</span><span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb20-7"><a href="prophage-loss-rate-parameter-sweep.html#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">&#39;white&#39;</span>, <span class="at">colour=</span><span class="st">&#39;black&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb20-8"><a href="prophage-loss-rate-parameter-sweep.html#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(), <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb20-9"><a href="prophage-loss-rate-parameter-sweep.html#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill=</span><span class="cn">FALSE</span>) <span class="sc">+</span> <span class="fu">scale_colour_manual</span>(<span class="at">values=</span><span class="fu">viridis</span>(<span class="fu">nlevels</span>(hostvals<span class="sc">$</span>PLR))) <span class="sc">+</span> </span>
+<span id="cb20-10"><a href="prophage-loss-rate-parameter-sweep.html#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">viridis</span>(<span class="fu">nlevels</span>(hostvals<span class="sc">$</span>PLR)))</span>
+<span id="cb20-11"><a href="prophage-loss-rate-parameter-sweep.html#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-12"><a href="prophage-loss-rate-parameter-sweep.html#cb20-12" aria-hidden="true" tabindex="-1"></a>hostcount_plot</span></code></pre></div>
+<p><img src="Evo-of-Lysogeny_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p>Host cfu count</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="prophage-loss-rate-parameter-sweep.html#cb21-1" aria-hidden="true" tabindex="-1"></a>hostcount_cfu_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>hostvals, <span class="fu">aes</span>(<span class="at">x=</span>update, <span class="at">y=</span>cfu_count, </span>
+<span id="cb21-2"><a href="prophage-loss-rate-parameter-sweep.html#cb21-2" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">group=</span>PLR, <span class="at">colour=</span>PLR)) <span class="sc">+</span> </span>
+<span id="cb21-3"><a href="prophage-loss-rate-parameter-sweep.html#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Host CFU Count&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Updates&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb21-4"><a href="prophage-loss-rate-parameter-sweep.html#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="fu">aes</span>(<span class="at">color=</span>PLR, <span class="at">fill=</span>PLR),</span>
+<span id="cb21-5"><a href="prophage-loss-rate-parameter-sweep.html#cb21-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">fun.data=</span><span class="st">&quot;mean_cl_boot&quot;</span>, <span class="at">geom=</span><span class="fu">c</span>(<span class="st">&quot;smooth&quot;</span>), <span class="at">se=</span><span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb21-6"><a href="prophage-loss-rate-parameter-sweep.html#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">&#39;white&#39;</span>, <span class="at">colour=</span><span class="st">&#39;black&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb21-7"><a href="prophage-loss-rate-parameter-sweep.html#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(), <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb21-8"><a href="prophage-loss-rate-parameter-sweep.html#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill=</span><span class="cn">FALSE</span>) <span class="sc">+</span> <span class="fu">scale_colour_manual</span>(<span class="at">values=</span><span class="fu">viridis</span>(<span class="fu">nlevels</span>(hostvals<span class="sc">$</span>PLR))) <span class="sc">+</span> </span>
+<span id="cb21-9"><a href="prophage-loss-rate-parameter-sweep.html#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">viridis</span>(<span class="fu">nlevels</span>(hostvals<span class="sc">$</span>PLR)))</span>
+<span id="cb21-10"><a href="prophage-loss-rate-parameter-sweep.html#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="prophage-loss-rate-parameter-sweep.html#cb21-11" aria-hidden="true" tabindex="-1"></a>hostcount_cfu_plot</span></code></pre></div>
+<p><img src="Evo-of-Lysogeny_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p>Host uninfected count</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="prophage-loss-rate-parameter-sweep.html#cb22-1" aria-hidden="true" tabindex="-1"></a>host_uninfected_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>hostvals, <span class="fu">aes</span>(<span class="at">x=</span>update, <span class="at">y=</span>uninfected_host_count, </span>
+<span id="cb22-2"><a href="prophage-loss-rate-parameter-sweep.html#cb22-2" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">group=</span>PLR, <span class="at">colour=</span>PLR)) <span class="sc">+</span> </span>
+<span id="cb22-3"><a href="prophage-loss-rate-parameter-sweep.html#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Uninfected Host Count&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Updates&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb22-4"><a href="prophage-loss-rate-parameter-sweep.html#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="fu">aes</span>(<span class="at">color=</span>PLR, <span class="at">fill=</span>PLR),</span>
+<span id="cb22-5"><a href="prophage-loss-rate-parameter-sweep.html#cb22-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">fun.data=</span><span class="st">&quot;mean_cl_boot&quot;</span>, <span class="at">geom=</span><span class="fu">c</span>(<span class="st">&quot;smooth&quot;</span>), <span class="at">se=</span><span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb22-6"><a href="prophage-loss-rate-parameter-sweep.html#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">&#39;white&#39;</span>, <span class="at">colour=</span><span class="st">&#39;black&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb22-7"><a href="prophage-loss-rate-parameter-sweep.html#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(), <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb22-8"><a href="prophage-loss-rate-parameter-sweep.html#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill=</span><span class="cn">FALSE</span>) <span class="sc">+</span> <span class="fu">scale_colour_manual</span>(<span class="at">values=</span><span class="fu">viridis</span>(<span class="fu">nlevels</span>(hostvals<span class="sc">$</span>PLR))) <span class="sc">+</span> </span>
+<span id="cb22-9"><a href="prophage-loss-rate-parameter-sweep.html#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">viridis</span>(<span class="fu">nlevels</span>(hostvals<span class="sc">$</span>PLR)))</span>
+<span id="cb22-10"><a href="prophage-loss-rate-parameter-sweep.html#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="prophage-loss-rate-parameter-sweep.html#cb22-11" aria-hidden="true" tabindex="-1"></a>host_uninfected_plot</span></code></pre></div>
+<p><img src="Evo-of-Lysogeny_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p>Host int vals</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="prophage-loss-rate-parameter-sweep.html#cb23-1" aria-hidden="true" tabindex="-1"></a>hostvals_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>hostvals, <span class="fu">aes</span>(<span class="at">x=</span>update, <span class="at">y=</span>mean_intval, </span>
+<span id="cb23-2"><a href="prophage-loss-rate-parameter-sweep.html#cb23-2" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">group=</span>PLR, <span class="at">colour=</span>PLR)) <span class="sc">+</span> </span>
+<span id="cb23-3"><a href="prophage-loss-rate-parameter-sweep.html#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Mean Host Interaction Value&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Updates&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb23-4"><a href="prophage-loss-rate-parameter-sweep.html#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="fu">aes</span>(<span class="at">color=</span>PLR, <span class="at">fill=</span>PLR),</span>
+<span id="cb23-5"><a href="prophage-loss-rate-parameter-sweep.html#cb23-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">fun.data=</span><span class="st">&quot;mean_cl_boot&quot;</span>, <span class="at">geom=</span><span class="fu">c</span>(<span class="st">&quot;smooth&quot;</span>), <span class="at">se=</span><span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb23-6"><a href="prophage-loss-rate-parameter-sweep.html#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">&#39;white&#39;</span>, <span class="at">colour=</span><span class="st">&#39;black&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb23-7"><a href="prophage-loss-rate-parameter-sweep.html#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(), <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb23-8"><a href="prophage-loss-rate-parameter-sweep.html#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill=</span><span class="cn">FALSE</span>) <span class="sc">+</span> <span class="fu">scale_colour_manual</span>(<span class="at">values=</span><span class="fu">viridis</span>(<span class="fu">nlevels</span>(hostvals<span class="sc">$</span>PLR))) <span class="sc">+</span> </span>
+<span id="cb23-9"><a href="prophage-loss-rate-parameter-sweep.html#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">viridis</span>(<span class="fu">nlevels</span>(hostvals<span class="sc">$</span>PLR)))</span>
+<span id="cb23-10"><a href="prophage-loss-rate-parameter-sweep.html#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="prophage-loss-rate-parameter-sweep.html#cb23-11" aria-hidden="true" tabindex="-1"></a>hostvals_plot</span></code></pre></div>
+<pre><code>## Warning: Removed 31562 rows containing non-finite values (stat_summary).</code></pre>
+<p><img src="Evo-of-Lysogeny_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+</div>
+<div id="phage-graphs" class="section level3" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Phage graphs</h3>
+<p>Phage count</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="prophage-loss-rate-parameter-sweep.html#cb25-1" aria-hidden="true" tabindex="-1"></a>phagecount_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>lysischances,</span>
+<span id="cb25-2"><a href="prophage-loss-rate-parameter-sweep.html#cb25-2" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">aes</span>(<span class="at">x=</span>update, <span class="at">y=</span>count,</span>
+<span id="cb25-3"><a href="prophage-loss-rate-parameter-sweep.html#cb25-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">group=</span>PLR, <span class="at">color=</span>PLR)) <span class="sc">+</span></span>
+<span id="cb25-4"><a href="prophage-loss-rate-parameter-sweep.html#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Phage count&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Updates&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb25-5"><a href="prophage-loss-rate-parameter-sweep.html#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="fu">aes</span>(<span class="at">color=</span>PLR, <span class="at">fill=</span>PLR),</span>
+<span id="cb25-6"><a href="prophage-loss-rate-parameter-sweep.html#cb25-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">fun.data=</span><span class="st">&quot;mean_cl_boot&quot;</span>, <span class="at">geom=</span><span class="fu">c</span>(<span class="st">&quot;smooth&quot;</span>), <span class="at">se=</span><span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb25-7"><a href="prophage-loss-rate-parameter-sweep.html#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">&#39;white&#39;</span>, <span class="at">colour=</span><span class="st">&#39;black&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb25-8"><a href="prophage-loss-rate-parameter-sweep.html#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(), <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb25-9"><a href="prophage-loss-rate-parameter-sweep.html#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill=</span><span class="cn">FALSE</span>) <span class="sc">+</span> <span class="fu">scale_colour_manual</span>(<span class="at">values=</span><span class="fu">viridis</span>(<span class="fu">nlevels</span>(lysischances<span class="sc">$</span>PLR))) <span class="sc">+</span> </span>
+<span id="cb25-10"><a href="prophage-loss-rate-parameter-sweep.html#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">viridis</span>(<span class="fu">nlevels</span>(lysischances<span class="sc">$</span>PLR)))</span>
+<span id="cb25-11"><a href="prophage-loss-rate-parameter-sweep.html#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-12"><a href="prophage-loss-rate-parameter-sweep.html#cb25-12" aria-hidden="true" tabindex="-1"></a>phagecount_plot</span></code></pre></div>
+<p><img src="Evo-of-Lysogeny_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p>Phage int val</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="prophage-loss-rate-parameter-sweep.html#cb26-1" aria-hidden="true" tabindex="-1"></a>phageintval_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>phagevals, <span class="fu">aes</span>(<span class="at">x=</span>update, <span class="at">y=</span>mean_intval,</span>
+<span id="cb26-2"><a href="prophage-loss-rate-parameter-sweep.html#cb26-2" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">group=</span>PLR, <span class="at">color=</span>PLR)) <span class="sc">+</span></span>
+<span id="cb26-3"><a href="prophage-loss-rate-parameter-sweep.html#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Phage Interaction value&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Updates&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb26-4"><a href="prophage-loss-rate-parameter-sweep.html#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="fu">aes</span>(<span class="at">color=</span>PLR, <span class="at">fill=</span>PLR),</span>
+<span id="cb26-5"><a href="prophage-loss-rate-parameter-sweep.html#cb26-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">fun.data=</span><span class="st">&quot;mean_cl_boot&quot;</span>, <span class="at">geom=</span><span class="fu">c</span>(<span class="st">&quot;smooth&quot;</span>), <span class="at">se=</span><span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb26-6"><a href="prophage-loss-rate-parameter-sweep.html#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">&#39;white&#39;</span>, <span class="at">colour=</span><span class="st">&#39;black&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb26-7"><a href="prophage-loss-rate-parameter-sweep.html#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(), <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb26-8"><a href="prophage-loss-rate-parameter-sweep.html#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill=</span><span class="cn">FALSE</span>) <span class="sc">+</span> <span class="fu">scale_colour_manual</span>(<span class="at">values=</span><span class="fu">viridis</span>(<span class="fu">nlevels</span>(phagevals<span class="sc">$</span>PLR))) <span class="sc">+</span> </span>
+<span id="cb26-9"><a href="prophage-loss-rate-parameter-sweep.html#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">viridis</span>(<span class="fu">nlevels</span>(phagevals<span class="sc">$</span>PLR)))</span>
+<span id="cb26-10"><a href="prophage-loss-rate-parameter-sweep.html#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="prophage-loss-rate-parameter-sweep.html#cb26-11" aria-hidden="true" tabindex="-1"></a>phageintval_plot</span></code></pre></div>
+<p><img src="Evo-of-Lysogeny_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p>Chance of lysis</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="prophage-loss-rate-parameter-sweep.html#cb27-1" aria-hidden="true" tabindex="-1"></a>lysischances_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>lysischances,</span>
+<span id="cb27-2"><a href="prophage-loss-rate-parameter-sweep.html#cb27-2" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">aes</span>(<span class="at">x=</span>update, <span class="at">y=</span>mean_lysischance,</span>
+<span id="cb27-3"><a href="prophage-loss-rate-parameter-sweep.html#cb27-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">group=</span>PLR, <span class="at">color=</span>PLR)) <span class="sc">+</span></span>
+<span id="cb27-4"><a href="prophage-loss-rate-parameter-sweep.html#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Mean Chance of Lysis&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Evolutionary Time (Updates)&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb27-5"><a href="prophage-loss-rate-parameter-sweep.html#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="fu">aes</span>(<span class="at">color=</span>PLR, <span class="at">fill=</span>PLR),</span>
+<span id="cb27-6"><a href="prophage-loss-rate-parameter-sweep.html#cb27-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">fun.data=</span><span class="st">&quot;mean_cl_boot&quot;</span>, <span class="at">geom=</span><span class="fu">c</span>(<span class="st">&quot;smooth&quot;</span>), <span class="at">se=</span><span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb27-7"><a href="prophage-loss-rate-parameter-sweep.html#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">&#39;white&#39;</span>, <span class="at">colour=</span><span class="st">&#39;black&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb27-8"><a href="prophage-loss-rate-parameter-sweep.html#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(), <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb27-9"><a href="prophage-loss-rate-parameter-sweep.html#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill=</span><span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb27-10"><a href="prophage-loss-rate-parameter-sweep.html#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values=</span><span class="fu">viridis</span>(<span class="fu">nlevels</span>(lysischances<span class="sc">$</span>PLR))) <span class="sc">+</span> </span>
+<span id="cb27-11"><a href="prophage-loss-rate-parameter-sweep.html#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">viridis</span>(<span class="fu">nlevels</span>(lysischances<span class="sc">$</span>PLR)))</span>
+<span id="cb27-12"><a href="prophage-loss-rate-parameter-sweep.html#cb27-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-13"><a href="prophage-loss-rate-parameter-sweep.html#cb27-13" aria-hidden="true" tabindex="-1"></a>lysischances_plot</span></code></pre></div>
+<p><img src="Evo-of-Lysogeny_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+</div>
+<div id="stacked-histograms" class="section level3" number="5.3.3">
+<h3><span class="header-section-number">5.3.3</span> Stacked Histograms</h3>
+<p>Chance of lysis stacked histogram</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="prophage-loss-rate-parameter-sweep.html#cb28-1" aria-hidden="true" tabindex="-1"></a>lysischance_stackedhistogram <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(lysis_histdata, </span>
+<span id="cb28-2"><a href="prophage-loss-rate-parameter-sweep.html#cb28-2" aria-hidden="true" tabindex="-1"></a>                                       <span class="fu">aes</span>(update, count)) <span class="sc">+</span> </span>
+<span id="cb28-3"><a href="prophage-loss-rate-parameter-sweep.html#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="fu">aes</span>(<span class="at">fill=</span>Histogram_bins), <span class="at">position=</span><span class="st">&#39;stack&#39;</span>) <span class="sc">+</span></span>
+<span id="cb28-4"><a href="prophage-loss-rate-parameter-sweep.html#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Count of Phage with Phenotype&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Evolutionary time (in updates)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb28-5"><a href="prophage-loss-rate-parameter-sweep.html#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="st">&quot;Chance of Lysis</span><span class="sc">\n</span><span class="st"> Phenotypes&quot;</span>,<span class="at">values=</span><span class="fu">viridis</span>(<span class="fu">nlevels</span>(lysis_histdata<span class="sc">$</span>Histogram_bins))) <span class="sc">+</span></span>
+<span id="cb28-6"><a href="prophage-loss-rate-parameter-sweep.html#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>treatment) <span class="sc">+</span> </span>
+<span id="cb28-7"><a href="prophage-loss-rate-parameter-sweep.html#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">&#39;light grey&#39;</span>, <span class="at">colour=</span><span class="st">&#39;black&#39;</span>)) <span class="sc">+</span> </span>
+<span id="cb28-8"><a href="prophage-loss-rate-parameter-sweep.html#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(), <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> </span>
+<span id="cb28-9"><a href="prophage-loss-rate-parameter-sweep.html#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill=</span><span class="cn">FALSE</span>) <span class="sc">+</span> <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>())</span>
+<span id="cb28-10"><a href="prophage-loss-rate-parameter-sweep.html#cb28-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-11"><a href="prophage-loss-rate-parameter-sweep.html#cb28-11" aria-hidden="true" tabindex="-1"></a>lysischance_stackedhistogram</span></code></pre></div>
+<p><img src="Evo-of-Lysogeny_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="template-for-munging-data-and-creating-graphs.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="benefit-only---induction-off.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-plr-parameter-sweep.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Evo-of-Lysogeny.pdf", "Evo-of-Lysogeny.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
