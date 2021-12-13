@@ -1,5 +1,6 @@
 # Evolution-of-Lysogeny-Paper
 The supplemental material for the paper on evolution of lysogeny using Symbulation.
+The Bookdown of the repository is available at https://anyaevostinar.github.io/Evolution-of-Lysogeny-Paper/.
 
 This repository has submodules necessary to rerun the experiments.
 To fully clone this repository, run
