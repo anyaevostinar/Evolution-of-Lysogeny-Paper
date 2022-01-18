@@ -10,6 +10,9 @@ Started on 8/26/21, this run isolates the effect of the benefit without includin
 ## InductionOn_BenefitOff
 Started on 8/23/21, this run was intended to verify that the system behavior stayed the same before and after implementing a potential benefit to the host from lysogenic phage. In this run, that benefit has been switched off via the config setting. The data, when graphed, should be the same as the data in ChanceOfInductionMutationTest.
 
+## InductionOn_BenefitOff_Extended
+Started on 1/18/22, this run was identical the one above, but with 10,000 updates instead of 5,000 updates. Induction for lysogenic phage is turned on and allowed to mutate, with starting values of 0.0 and 0.1. Lysogenic phage do not have a direct effect on their hosts, so incorporation values are neutral for bacteria and phage and are not permitted to mutate. We use prophage loss rates 0.0, 0.025, and 0.5.
+
 ## InductionOn_BenefitOn_NonRandomIncVals
 Started on 8/17/21, this run was intended to see the effect of lysogenic phage helping or hurting their hosts through resource availability. It tested three different prophage loss rates (0.0, 0.025, and 0.05) with a constant host incorporation value of 1 and starting phage incorporation values of 1.0, 0.5, and 0.0. Both incorporation values were permitted to mutate and benefit to the host was on.
 
