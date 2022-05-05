@@ -99,8 +99,8 @@ hostcount_plot <- ggplot(data=hostvals,
                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
   theme(panel.background = element_rect(fill='white', colour='black')) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(hostvals$PLR))) + 
-  scale_fill_manual(values=viridis(nlevels(hostvals$PLR)))
+  guides(fill="none") + scale_colour_manual(values=plasma(nlevels(hostvals$PLR)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(hostvals$PLR)+2))
 
 hostcount_plot + facet_wrap(~PIV)
 ```
@@ -114,8 +114,8 @@ hostcount_cfu_plot <- ggplot(data=hostvals, aes(x=update, y=cfu_count,
                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
   theme(panel.background = element_rect(fill='white', colour='black')) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(hostvals$PLR))) + 
-  scale_fill_manual(values=viridis(nlevels(hostvals$PLR)))
+  guides(fill="none") + scale_colour_manual(values=plasma(nlevels(hostvals$PLR)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(hostvals$PLR)+2))
 
 hostcount_cfu_plot + facet_wrap(~PIV)
 ```
@@ -129,8 +129,8 @@ host_uninfected_plot <- ggplot(data=hostvals, aes(x=update, y=uninfected_host_co
                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
   theme(panel.background = element_rect(fill='white', colour='black')) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(hostvals$PLR))) + 
-  scale_fill_manual(values=viridis(nlevels(hostvals$PLR)))
+  guides(fill="none") + scale_colour_manual(values=plasma(nlevels(hostvals$PLR)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(hostvals$PLR)+2))
 
 host_uninfected_plot + facet_wrap(~PIV)
 ```
@@ -144,8 +144,8 @@ hostvals_plot <- ggplot(data=hostvals, aes(x=update, y=mean_intval,
                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
   theme(panel.background = element_rect(fill='white', colour='black')) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(hostvals$PLR))) + 
-  scale_fill_manual(values=viridis(nlevels(hostvals$PLR)))
+  guides(fill="none") + scale_colour_manual(values=plasma(nlevels(hostvals$PLR)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(hostvals$PLR)+2))
 
 hostvals_plot + facet_wrap(~PIV)
 ```
@@ -162,8 +162,8 @@ phagecount_plot <- ggplot(data=lysischances,
                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
   theme(panel.background = element_rect(fill='white', colour='black')) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(lysischances$PLR))) + 
-  scale_fill_manual(values=viridis(nlevels(lysischances$PLR)))
+  guides(fill="none") + scale_colour_manual(values=plasma(nlevels(lysischances$PLR)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(lysischances$PLR)+2))
 
 phagecount_plot + facet_wrap(~PIV)
 ```
@@ -177,8 +177,8 @@ phageintval_plot <- ggplot(data=phagevals, aes(x=update, y=mean_intval,
                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
   theme(panel.background = element_rect(fill='white', colour='black')) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(phagevals$PLR))) + 
-  scale_fill_manual(values=viridis(nlevels(phagevals$PLR)))
+  guides(fill="none") + scale_colour_manual(values=plasma(nlevels(phagevals$PLR)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(phagevals$PLR)+2))
 
 phageintval_plot + facet_wrap(~PIV)
 ```
@@ -186,11 +186,11 @@ phageintval_plot + facet_wrap(~PIV)
 Chance of lysis
 ```{r}
 lysischances <- lysischances %>%
-  mutate(phage_type = as.factor(ifelse(PIV == "PIV 0.0", "A - Harmful Phage", 
-                             ifelse(PIV == "PIV 0.5", "B - Neutral Phage", 
+  mutate(phage_type = as.factor(ifelse(PIV == "0", "A - Harmful Phage", 
+                             ifelse(PIV == "0.5", "B - Neutral Phage", 
                                     "C - Beneficial Phage")))) %>%
-  mutate(ProphageDeathRate = as.factor(ifelse(PLR == "PLR 0.0", "0.0",
-                                              ifelse(PLR == "PLR 0.025", "0.025",
+  mutate(ProphageDeathRate = as.factor(ifelse(PLR == "0", "0",
+                                              ifelse(PLR == "0.025", "0.025",
                                                      "0.05"))))
 
 lysischances_plot <- ggplot(data=lysischances,
@@ -201,9 +201,9 @@ lysischances_plot <- ggplot(data=lysischances,
                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
   theme(panel.background = element_rect(fill='white', colour='black')) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  guides(fill=FALSE) + 
-  scale_colour_manual(values=viridis(nlevels(lysischances$ProphageDeathRate))) + 
-  scale_fill_manual(values=viridis(nlevels(lysischances$ProphageDeathRate)))
+  guides(fill="none") + 
+  scale_colour_manual(values=plasma(nlevels(lysischances$ProphageDeathRate)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(lysischances$ProphageDeathRate)+2))
 
 lysischances_plot + facet_wrap(~phage_type)
 ```
@@ -218,8 +218,8 @@ inductionchances_plot <- ggplot(data=inductionchances,
                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
   theme(panel.background = element_rect(fill='white', colour='black')) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(inductionchances$PLR))) + 
-  scale_fill_manual(values=viridis(nlevels(inductionchances$PLR)))
+  guides(fill="none") + scale_colour_manual(values=plasma(nlevels(inductionchances$PLR)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(inductionchances$PLR)+2))
 
 inductionchances_plot + facet_wrap(~PIV)
 ```
@@ -227,11 +227,11 @@ inductionchances_plot + facet_wrap(~PIV)
 Mean difference in incorporation vals
 ```{r}
 incvalsdiffs <- incvalsdiffs %>%
-  mutate(phage_type = as.factor(ifelse(PIV == "PIV 0.0", "A - Harmful Phage", 
-                             ifelse(PIV == "PIV 0.5", "B - Neutral Phage", 
+  mutate(phage_type = as.factor(ifelse(PIV == "0", "A - Harmful Phage", 
+                             ifelse(PIV == "0.5", "B - Neutral Phage", 
                                     "C - Beneficial Phage")))) %>%
-  mutate(ProphageDeathRate = as.factor(ifelse(PLR == "PLR 0.0", "0.0",
-                                              ifelse(PLR == "PLR 0.025", "0.025",
+  mutate(ProphageDeathRate = as.factor(ifelse(PLR == "0", "0",
+                                              ifelse(PLR == "0.025", "0.025",
                                                      "0.05"))))
 
 incorp_diff_plot <- ggplot(data=incvalsdiffs,
@@ -243,9 +243,9 @@ incorp_diff_plot <- ggplot(data=incvalsdiffs,
                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
   theme(panel.background = element_rect(fill='white', colour='black')) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  guides(fill=FALSE) + 
-  scale_colour_manual(values=viridis(nlevels(incvalsdiffs$ProphageDeathRate))) + 
-  scale_fill_manual(values=viridis(nlevels(incvalsdiffs$ProphageDeathRate)))
+  guides(fill="none") + 
+  scale_colour_manual(values=plasma(nlevels(incvalsdiffs$ProphageDeathRate)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(incvalsdiffs$ProphageDeathRate)+2))
 
 incorp_diff_plot + facet_wrap(~phage_type)
 ```
@@ -258,11 +258,11 @@ lysischance_stackedhistogram <- ggplot(lysis_histdata,
                                        aes(update, count)) + 
   geom_area(aes(fill=Histogram_bins), position='stack') +
   ylab("Count of Phage with Phenotype") + xlab("Evolutionary time (in updates)") +
-  scale_fill_manual("Chance of Lysis\n Phenotypes",values=viridis(nlevels(lysis_histdata$Histogram_bins))) +
+  scale_fill_manual("Chance of Lysis\n Phenotypes",values=plasma(nlevels(lysis_histdata$Histogram_bins)+2)) +
   facet_wrap(~treatment) + 
   theme(panel.background = element_rect(fill='light grey', colour='black')) + 
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + 
-  guides(fill=FALSE) + guides(fill = guide_legend())
+  guides(fill="none") + guides(fill = guide_legend())
 
 lysischance_stackedhistogram
 ```
@@ -274,11 +274,11 @@ inductionchance_stackedhistogram <- ggplot(induction_histdata,
   geom_area(aes(fill=Histogram_bins), position='stack') +
   ylab("Count of Phage with Phenotype") + xlab("Evolutionary time (in updates)") +
   scale_fill_manual("Chance of Induction\n Phenotypes",
-                    values=viridis(nlevels(induction_histdata$Histogram_bins))) +
+                    values=plasma(nlevels(induction_histdata$Histogram_bins)+2)) +
   facet_wrap(~treatment) + 
   theme(panel.background = element_rect(fill='light grey', colour='black')) + 
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + 
-  guides(fill=FALSE) + guides(fill = guide_legend())
+  guides(fill="none") + guides(fill = guide_legend())
 
 inductionchance_stackedhistogram
 ```
@@ -290,11 +290,11 @@ incorp_diff_stackedhistogram <- ggplot(incorp_diff_histdata,
   geom_area(aes(fill=Histogram_bins), position='stack') +
   ylab("Count of Phage with Phenotype") + xlab("Evolutionary time (in updates)") +
   scale_fill_manual("Difference in \n Incorporation Vals",
-                    values=viridis(nlevels(incorp_diff_histdata$Histogram_bins))) +
+                    values=plasma(nlevels(incorp_diff_histdata$Histogram_bins)+2)) +
   facet_wrap(~treatment) + 
   theme(panel.background = element_rect(fill='light grey', colour='black')) + 
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + 
-  guides(fill=FALSE) + guides(fill = guide_legend())
+  guides(fill="none") + guides(fill = guide_legend())
 
 incorp_diff_stackedhistogram
 ```

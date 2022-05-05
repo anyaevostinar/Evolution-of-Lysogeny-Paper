@@ -5,6 +5,7 @@ The following is a basic outline of how we used R to munge data and generate gra
 knitr::opts_chunk$set(echo = TRUE)
 
 library(ggplot2)
+library(ggdist)
 library(readr)
 library(dplyr)
 library(stringr)
@@ -30,13 +31,12 @@ get_treatment_val <- function(filename, treatment_name){
   decimal_pattern <- "[\\d].[\\d]+"
   integer_pattern <- "[\\d]+"
   if(str_detect(treatment, "\\.")){
-    treatment_val <- str_extract(treatment, decimal_pattern)
+    treatment_val <- as.numeric(str_extract(treatment, decimal_pattern))
   } else {
-    treatment_val <- str_extract(treatment, integer_pattern)
+    treatment_val <- as.numeric(str_extract(treatment, integer_pattern))
   }
   
-  full_treatment <- str_c(c(treatment_name, " ", treatment_val), sep="", collapse="")
-  full_treatment
+  treatment_val 
 }
 ```
 
@@ -129,8 +129,17 @@ combine_histogram_data <- function(time_data, separate_by, bins){
 }
 ```
 
+Filter the data to only the last update
+```{r}
+last_update <- function(time_data){
+  time_data %>% filter(update == max(time_data$update))
+}
+```
+
 
 ## Gather Settings and Treatments
+
+**Note: the following is an example of how to use the above functions**
 
 General settings
 ```{r, eval=FALSE}
@@ -176,6 +185,22 @@ Rearrange time series data into stacked histogram data
 symval_histdata <- combine_histogram_data(symvals, separate_by, histogram_bins)
 ```
 
+Extract information about average genome values at the end of the runs
+```{r, eval=FALSE}
+final_hostvals <- last_update(hostvals)
+final_symvals <- last_update(symvals)
+```
+
+## Analyze Data
+### Summary Stats
+```{r, eval=FALSE}
+hostvals_summary_stats <- final_hostvals %>%
+  group_by(PLR, COI) %>%
+  summarise(final_intval = mean(mean_intval))
+
+hostvals_summary_stats
+```
+
 ## Create graphs
 
 ### Graph templates
@@ -190,9 +215,9 @@ timeseries_graph <- ggplot(data= <TIME_SERIES_DATASET_NAME>,
                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
   theme(panel.background = element_rect(fill='white', colour='black')) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  guides(fill=FALSE) + 
-  scale_colour_manual(values=viridis(nlevels(<TIME_SERIES_DATASET_NAME>$<GROUP_VAL_NAME>))) + 
-  scale_fill_manual(values=viridis(nlevels(<TIME_SERIES_DATASET_NAME>$<GROUP_VAL_NAME>)))
+  guides(fill="none") + 
+  scale_colour_manual(values=plasma(nlevels(<TIME_SERIES_DATASET_NAME>$<GROUP_VAL_NAME>)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(<TIME_SERIES_DATASET_NAME>$<GROUP_VAL_NAME>)+2))
 
 #Facet wrapping is optional, but can be used if multiple treatments are being used
 timeseries_graph + facet_wrap(<GROUP_VAL2_NAME>) 
@@ -205,13 +230,43 @@ stackedhistogram <- ggplot(data = <HISTOGRAM_DATASET_NAME>,
                                        aes(update, count)) + 
   geom_area(aes(fill=Histogram_bins), position='stack') +
   ylab(<Y_AXIS_LABEL>) + xlab("Evolutionary time (in updates)") +
-  scale_fill_manual(<LEGEND_TITLE>,values=viridis(nlevels(<HISTOGRAM_DATASET_NAME>$Histogram_bins))) +
+  scale_fill_manual(<LEGEND_TITLE>,values=plasma(nlevels(<HISTOGRAM_DATASET_NAME>$Histogram_bins)+2)) +
   facet_wrap(~treatment) + 
   theme(panel.background = element_rect(fill='light grey', colour='black')) + 
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + 
-  guides(fill=FALSE) + guides(fill = guide_legend())
+  guides(fill="none") + guides(fill = guide_legend())
 
 stackedhistogram
+```
+
+Boxplot template
+```{r, eval=FALSE}
+#All values with this format: <VAL_NAME> need to be filled in
+boxplot <- ggplot(data = <FINAL_INTVAL_DATASET_NAME>, 
+                  aes(x = <TREATMENT_NAME>, y = mean_intval,
+                                  group=<TREATMENT_NAME>, color=<TREATMENT_NAME>)) + 
+  geom_boxplot(
+    width = .25, 
+    outlier.shape = NA
+  ) +
+  geom_point(
+    size = 1.3,
+    alpha = .3,
+    position = position_jitter(
+      seed = 1, width = .1
+    )
+  ) + 
+  coord_cartesian(xlim = c(1.2, NA), clip = "off") +
+  ylab("Mean Interaction Value") + xlab(<TREATMENT_LABEL>) +
+  theme(panel.background = element_rect(fill='white', colour='black')) +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  guides(fill="none") +
+  scale_colour_manual(values=plasma(nlevels(<FINAL_INTVAL_DATASET_NAME>$<TREATMENT_NAME>)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(<FINAL_INTVAL_DATASET_NAME>$<TREATMENT_NAME>)+2)) +
+  scale_y_continuous(labels = scales::percent) +
+  theme(legend.position = "none")
+
+boxplot
 ```
 
 ### Examples
@@ -225,8 +280,8 @@ hostcount_plot <- ggplot(data=hostvals,
                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
   theme(panel.background = element_rect(fill='white', colour='black')) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(hostvals$PLR))) + 
-  scale_fill_manual(values=viridis(nlevels(hostvals$PLR)))
+  guides(fill=FALSE) + scale_colour_manual(values=plasma(nlevels(hostvals$PLR)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(hostvals$PLR)+2))
 
 hostcount_plot + facet_wrap(~COI)
 ```
@@ -240,8 +295,8 @@ symintval_plot <- ggplot(data=symvals, aes(x=update, y=mean_intval,
                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
   theme(panel.background = element_rect(fill='white', colour='black')) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(symvals$PLR))) + 
-  scale_fill_manual(values=viridis(nlevels(symvals$PLR)))
+  guides(fill=FALSE) + scale_colour_manual(values=plasma(nlevels(symvals$PLR)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(symvals$PLR)+2))
 
 symintval_plot + facet_wrap(~COI)
 ```
@@ -252,11 +307,40 @@ symval_stackedhistogram <- ggplot(symval_histdata,
                                        aes(update, count)) + 
   geom_area(aes(fill=Histogram_bins), position='stack') +
   ylab("Count of Symbionts with Phenotype") + xlab("Evolutionary time (in updates)") +
-  scale_fill_manual("Interaction Val\n Phenotypes",values=viridis(nlevels(symval_histdata$Histogram_bins))) +
+  scale_fill_manual("Interaction Val\n Phenotypes",values=plasma(nlevels(symval_histdata$Histogram_bins)+2)) +
   facet_wrap(~treatment) + 
   theme(panel.background = element_rect(fill='light grey', colour='black')) + 
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + 
   guides(fill=FALSE) + guides(fill = guide_legend())
 
 symval_stackedhistogram
+```
+
+Sym interaction vals boxplot
+```{r, eval=FALSE}
+boxplot <- ggplot(data = final_symvals, 
+                  aes(x = PLR, y = mean_intval,
+                                  group=PLR, color=PLR)) + 
+  geom_boxplot(
+    width = .25, 
+    outlier.shape = NA
+  ) +
+  geom_point(
+    size = 1.3,
+    alpha = .3,
+    position = position_jitter(
+      seed = 1, width = .1
+    )
+  ) + 
+  coord_cartesian(xlim = c(1.2, NA), clip = "off") +
+  ylab("Mean Interaction Value") + xlab("Prophage Loss Rate") +
+  theme(panel.background = element_rect(fill='white', colour='black')) +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  guides(fill="none") +
+  scale_colour_manual(values=plasma(nlevels(final_symvals$PLR)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(final_symvals$PLR)+2)) +
+  scale_y_continuous(labels = scales::percent) +
+  theme(legend.position = "none")
+
+boxplot
 ```

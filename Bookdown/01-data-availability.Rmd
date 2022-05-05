@@ -7,3 +7,39 @@ Our source code is available [here.](https://github.com/anyaevostinar/Symbulatio
 ## Experimental Results
 
 The scripts to regenerate all data can be found [here.](https://github.com/anyaevostinar/Evolution-of-Lysogeny-Paper/tree/main/Data)
+
+The below table is a summary of the average genome values at the end of the experiments discussed in the research paper.
+
+## Summary Table of Numerical Results
+
+|**Experiment**|**Prophage Loss Rate**|**Starting Chance of Induction**|**Prophage Interaction Enabled**|**Final Chance of Induction**|**Final Chance of Lysis**|**Final Difference in Incorporation Vals**|
+|----|----|----|----|----|----|----|
+|**PLR Sweep**|0.0%|Induction Not Enabled|Interaction Not Enabled|N/A|4.88%|N/A|
+|**PLR Sweep**|2.5%|Induction Not Enabled|Interaction Not Enabled|N/A|39.19%|N/A|
+|**PLR Sweep**|5.0%|Induction Not Enabled|Interaction Not Enabled|N/A|85.64%|N/A|
+|**Induction Only**|0.0%|0%|Interaction Not Enabled|1.56%|4.92%|N/A|
+|**Induction Only**|0.0%|10%|Interaction Not Enabled|1.55%|4.93%|N/A|
+|**Induction Only**|2.5%|0%|Interaction Not Enabled|4.78%|13.23%|N/A|
+|**Induction Only**|2.5%|10%|Interaction Not Enabled|5.16%|19.23%|N/A|
+|**Induction Only**|5.0%|0%|Interaction Not Enabled|7.50%|82.20%|N/A|
+|**Induction Only**|5.0%|10%|Interaction Not Enabled|10.14%|54.81%|N/A|
+|**Prophage Interaction Only**|0.0%|Induction Not Enabled|Harmful|N/A|4.87%|0.05|
+|**Prophage Interaction Only**|0.0%|Induction Not Enabled|Neutral|N/A|4.85%|0.05|
+|**Prophage Interaction Only**|0.0%|Induction Not Enabled|Beneficial|N/A|4.92%|0.05|
+|**Prophage Interaction Only**|2.5%|Induction Not Enabled|Harmful|N/A|94.59%|0.91|
+|**Prophage Interaction Only**|2.5%|Induction Not Enabled|Neutral|N/A|5.49%%|0.05|
+|**Prophage Interaction Only**|2.5%|Induction Not Enabled|Beneficial|N/A|5.54%|0.05|
+|**Prophage Interaction Only**|5.0%|Induction Not Enabled|Harmful|N/A|90.76%|0.92|
+|**Prophage Interaction Only**|5.0%|Induction Not Enabled|Neutral|N/A|68.64%|0.18|
+|**Prophage Interaction Only**|5.0%|Induction Not Enabled|Beneficial|N/A|38.19%|0.06|
+
+
+
+
+
+
+
+
+
+
+

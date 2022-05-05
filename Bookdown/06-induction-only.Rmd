@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: inline
+---
 # Induction Only - Benefit Off
 The following includes the R scripts that we used to generate our graphs for the data where induction was possible for lysogenic phage, but the potential benefit to the hosts of lysogenic phage was turned off.
 
@@ -5,8 +10,8 @@ The following includes the R scripts that we used to generate our graphs for the
 
 General settings
 ```{r}
-folder <- "Data/InductionOnly/" #Folder where datafiles are 
-treatments <- c("PLR", "COI") #Names of the treatments being tested - should match what is in filenames
+ind_folder <- "Data/InductionOnly/" #Folder where datafiles are 
+ind_treatments <- c("PLR", "COI") #Names of the treatments being tested - should match what is in filenames
 ```
 
 Stacked histogram settings
@@ -42,40 +47,103 @@ lysis_histogram_bins <- c(Hist_0.0 = "0 to 0.2 (Highly lysogenic)",
 
 Gather filenames
 ```{r}
-all_filenames <- list.files(folder)
+ind_all_filenames <- list.files(ind_folder)
 
-freeliving_filenames <- str_subset(all_filenames, "FreeLivingSyms")
-hostval_filenames <- str_subset(all_filenames, "HostVals")
-induction_filenames <- str_subset(all_filenames, "InductionChance")
-lysischance_filenames <- str_subset(all_filenames, "LysisChance")
-phagevals_filenames <- str_subset(all_filenames, "SymVals")
+ind_freeliving_filenames <- str_subset(ind_all_filenames, "FreeLivingSyms")
+ind_hostval_filenames <- str_subset(ind_all_filenames, "HostVals")
+ind_induction_filenames <- str_subset(ind_all_filenames, "InductionChance")
+ind_lysischance_filenames <- str_subset(ind_all_filenames, "LysisChance")
+ind_phagevals_filenames <- str_subset(ind_all_filenames, "SymVals")
 ```
 
 Combine time series data for all subsets of datafiles
 ```{r, results='hide', message=FALSE}
-freeliving <- combine_time_data(freeliving_filenames, folder, treatments)
-hostvals <- combine_time_data(hostval_filenames, folder, treatments)
-inductionchances <- combine_time_data(induction_filenames, folder, treatments)
-lysischances <- combine_time_data(lysischance_filenames, folder, treatments)
-phagevals <- combine_time_data(phagevals_filenames, folder, treatments)
+ind_freeliving <- combine_time_data(ind_freeliving_filenames, ind_folder, ind_treatments)
+ind_hostvals <- combine_time_data(ind_hostval_filenames, ind_folder, ind_treatments)
+ind_inductionchances <- combine_time_data(ind_induction_filenames, ind_folder, ind_treatments)
+ind_lysischances <- combine_time_data(ind_lysischance_filenames, ind_folder, ind_treatments)
+ind_phagevals <- combine_time_data(ind_phagevals_filenames, ind_folder, ind_treatments)
 ```
 
 Rearrange time series data into stacked histogram data
 ```{r}
-induction_histdata <- combine_histogram_data(inductionchances, 
+ind_induction_histdata <- combine_histogram_data(ind_inductionchances, 
                                              induction_separate_by,
                                              induction_histogram_bins)
 
-lysis_histdata <- combine_histogram_data(lysischances, 
+ind_lysis_histdata <- combine_histogram_data(ind_lysischances, 
                                          lysis_separate_by, 
                                          lysis_histogram_bins)
+```
+
+Extract information about average genome values at the end of the runs
+```{r}
+ind_final_freeliving <- last_update(ind_freeliving)
+ind_final_hostvals <- last_update(ind_hostvals)
+ind_final_inductionchances <- last_update(ind_inductionchances)
+ind_final_lysischances <- last_update(ind_lysischances)
+ind_final_phagevals <- last_update(ind_phagevals)
+```
+
+## Analyze Data
+### Summary Stats
+```{r}
+ind_lysis_summary_stats <- ind_final_lysischances %>%
+  group_by(PLR, COI) %>%
+  summarise(final_chance_of_lysis = mean(mean_lysischance*100))
+
+ind_lysis_summary_stats
+```
+
+```{r}
+ind_induction_summary_stats <- ind_final_inductionchances %>%
+   group_by(PLR, COI) %>%
+   summarise(Final_COI = mean(mean_inductionchance*100))
+
+ind_induction_summary_stats
+```
+
+### Wilcox tests
+
+0% chance of induction
+```{r}
+#At a chance of induction of 0%, compare PLR 0% to PLR 2.5%
+ind_PLR0 <- subset(subset(ind_final_inductionchances, PLR == "0"), COI == "0")
+ind_PLR0.025 <- subset(subset(ind_final_inductionchances, PLR == "0.025"), COI == "0")
+
+wilcox.test(ind_PLR0$mean_inductionchance, ind_PLR0.025$mean_inductionchance)$p.value * bonferroni
+
+#At a chance of induction of 0%, compare PLR 0% to PLR 5%
+ind_PLR0.05 <- subset(subset(ind_final_inductionchances, PLR == "0.05"), COI == "0")
+
+wilcox.test(ind_PLR0$mean_inductionchance, ind_PLR0.05$mean_inductionchance)$p.value * bonferroni
+```
+
+Compare Chance of Lysis for PLR 2.5% across all levels of induction
+```{r}
+noInd_PLR2.5 <- subset(ind_final_lysischances, PLR == "0.025")
+ind_PLR2.5_COI0.0 <- subset(subset(ind_final_lysischances, PLR == "0.025"), COI == "0")
+ind_PLR2.5_COI0.1 <- subset(subset(ind_final_lysischances, PLR == "0.025"), COI == "0.1")
+
+wilcox.test(noInd_PLR2.5$mean_lysischance, ind_PLR2.5_COI0.0$mean_lysischance)$p.value * bonferroni
+wilcox.test(noInd_PLR2.5$mean_lysischance, ind_PLR2.5_COI0.1$mean_lysischance)$p.value * bonferroni
+```
+
+Compare Chance of Lysis for PLR 5% across all levels of induction
+```{r}
+noInd_PLR5 <- subset(ind_final_lysischances, PLR == "0.05")
+ind_PLR5_COI0.0 <- subset(subset(ind_final_lysischances, PLR == "0.05"), COI == "0")
+ind_PLR5_COI0.1 <- subset(subset(ind_final_lysischances, PLR == "0.05"), COI == "0.1")
+
+wilcox.test(noInd_PLR5$mean_lysischance, ind_PLR5_COI0.0$mean_lysischance)$p.value * bonferroni
+wilcox.test(noInd_PLR5$mean_lysischance, ind_PLR5_COI0.1$mean_lysischance)$p.value * bonferroni
 ```
 
 ## Generate Graphs
 ### Host graphs
 Host count
 ```{r}
-hostcount_plot <- ggplot(data=hostvals,
+hostcount_plot <- ggplot(data=ind_hostvals,
                          aes(x=update, y=count, 
                              group=PLR, colour=PLR)) + 
   ylab("Host Count") + xlab("Updates") + 
@@ -83,53 +151,53 @@ hostcount_plot <- ggplot(data=hostvals,
                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
   theme(panel.background = element_rect(fill='white', colour='black')) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(hostvals$PLR))) + 
-  scale_fill_manual(values=viridis(nlevels(hostvals$PLR)))
+  guides(fill="none") + scale_colour_manual(values=plasma(nlevels(ind_hostvals$PLR)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(ind_hostvals$PLR)+2))
 
 hostcount_plot + facet_wrap(~COI)
 ```
 
 Host cfu count
 ```{r}
-hostcount_cfu_plot <- ggplot(data=hostvals, aes(x=update, y=cfu_count, 
+hostcount_cfu_plot <- ggplot(data=ind_hostvals, aes(x=update, y=cfu_count, 
                                                 group=PLR, colour=PLR)) + 
   ylab("Host CFU Count") + xlab("Updates") + 
   stat_summary(aes(color=PLR, fill=PLR),
                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
   theme(panel.background = element_rect(fill='white', colour='black')) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(hostvals$PLR))) + 
-  scale_fill_manual(values=viridis(nlevels(hostvals$PLR)))
+  guides(fill="none") + scale_colour_manual(values=plasma(nlevels(ind_hostvals$PLR)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(ind_hostvals$PLR)+2))
 
 hostcount_cfu_plot + facet_wrap(~COI)
 ```
 
 Host uninfected count
 ```{r}
-host_uninfected_plot <- ggplot(data=hostvals, aes(x=update, y=uninfected_host_count, 
+host_uninfected_plot <- ggplot(data=ind_hostvals, aes(x=update, y=uninfected_host_count, 
                                                   group=PLR, colour=PLR)) + 
   ylab("Uninfected Host Count") + xlab("Updates") + 
   stat_summary(aes(color=PLR, fill=PLR),
                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
   theme(panel.background = element_rect(fill='white', colour='black')) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(hostvals$PLR))) + 
-  scale_fill_manual(values=viridis(nlevels(hostvals$PLR)))
+  guides(fill="none") + scale_colour_manual(values=plasma(nlevels(ind_hostvals$PLR)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(ind_hostvals$PLR)+2))
 
 host_uninfected_plot + facet_wrap(~COI)
 ```
 
 Host int vals
 ```{r}
-hostvals_plot <- ggplot(data=hostvals, aes(x=update, y=mean_intval, 
+hostvals_plot <- ggplot(data=ind_hostvals, aes(x=update, y=mean_intval, 
                                            group=PLR, colour=PLR)) + 
   ylab("Mean Host Interaction Value") + xlab("Updates") + 
   stat_summary(aes(color=PLR, fill=PLR),
                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
   theme(panel.background = element_rect(fill='white', colour='black')) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(hostvals$PLR))) + 
-  scale_fill_manual(values=viridis(nlevels(hostvals$PLR)))
+  guides(fill="none") + scale_colour_manual(values=plasma(nlevels(ind_hostvals$PLR)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(ind_hostvals$PLR)+2))
 
 hostvals_plot + facet_wrap(~COI)
 ```
@@ -138,7 +206,7 @@ hostvals_plot + facet_wrap(~COI)
 
 Phage count
 ```{r}
-phagecount_plot <- ggplot(data=lysischances,
+phagecount_plot <- ggplot(data=ind_lysischances,
                           aes(x=update, y=count,
                               group=PLR, color=PLR)) +
   ylab("Phage count") + xlab("Updates") + 
@@ -146,55 +214,80 @@ phagecount_plot <- ggplot(data=lysischances,
                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
   theme(panel.background = element_rect(fill='white', colour='black')) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(lysischances$PLR))) + 
-  scale_fill_manual(values=viridis(nlevels(lysischances$PLR)))
+  guides(fill="none") + scale_colour_manual(values=plasma(nlevels(ind_lysischances$PLR)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(ind_lysischances$PLR)+2))
 
 phagecount_plot + facet_wrap(~COI)
 ```
 
 Phage int val
 ```{r}
-phageintval_plot <- ggplot(data=phagevals, aes(x=update, y=mean_intval,
+phageintval_plot <- ggplot(data=ind_phagevals, aes(x=update, y=mean_intval,
                                                group=PLR, color=PLR)) +
   ylab("Phage Interaction value") + xlab("Updates") + 
   stat_summary(aes(color=PLR, fill=PLR),
                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
   theme(panel.background = element_rect(fill='white', colour='black')) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(phagevals$PLR))) + 
-  scale_fill_manual(values=viridis(nlevels(phagevals$PLR)))
+  guides(fill="none") + scale_colour_manual(values=plasma(nlevels(ind_phagevals$PLR)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(ind_phagevals$PLR)+2))
 
 phageintval_plot + facet_wrap(~COI)
 ```
 
 Chance of lysis
 ```{r}
-lysischances <- lysischances %>%
-  mutate(starting_ind = as.factor(ifelse(COI == "COI 0.0", 
-                                         "Starting Induction Chance 0.0", 
-                                         "Starting Induction Chance 0.1"))) %>%
-  mutate(ProphageDeathRate = as.factor(ifelse(PLR == "PLR 0.0", "0.0",
-                                              ifelse(PLR == "PLR 0.025", "0.025",
-                                                     "0.05"))))
-
-lysischances_plot <- ggplot(data=lysischances,
+lysischances_plot <- ggplot(data=ind_lysischances,
                             aes(x=update, y=mean_lysischance,
-                                group=ProphageDeathRate, color=ProphageDeathRate)) +
+                                group=PLR, color=PLR)) +
   ylab("Mean Chance of Lysis") + xlab("Evolutionary Time (Updates)") + 
-  stat_summary(aes(color=ProphageDeathRate, fill=ProphageDeathRate),
+  stat_summary(aes(color=PLR, fill=PLR),
                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
   theme(panel.background = element_rect(fill='white', colour='black')) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  guides(fill=FALSE) + 
-  scale_colour_manual(values=viridis(nlevels(lysischances$ProphageDeathRate))) + 
-  scale_fill_manual(values=viridis(nlevels(lysischances$ProphageDeathRate)))
+  guides(fill="none") + 
+  scale_colour_manual(values=plasma(5)) + 
+  scale_fill_manual(values=plasma(5))
 
-lysischances_plot + facet_wrap(~starting_ind)
+lysischances_plot + facet_wrap(~COI)
+```
+Chance of lysis rainplot
+```{r}
+ind_final_lysischances2 <- ind_final_lysischances %>%
+  mutate(starting_ind = as.factor(ifelse(COI == "0",
+                                         "Induction Chance 0%",
+                                         "Induction Chance 10%")))
+
+lysis_raincloud <- ggplot(data = ind_final_lysischances2, 
+                              aes(x = PLR, y = mean_lysischance,
+                                  group=PLR, color=PLR)) + 
+  geom_boxplot(
+    width = .25, 
+    outlier.shape = NA
+  ) +
+  geom_point(
+    size = 1.3,
+    alpha = .3,
+    position = position_jitter(
+      seed = 1, width = .1
+    )
+  ) + 
+  coord_cartesian(xlim = c(1.2, NA), clip = "off") +
+  ylab("Mean Chance of Lysis") + xlab("Prophage Loss Rate") +
+  theme(panel.background = element_rect(fill='white', colour='black')) +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  guides(fill="none") +
+  scale_colour_manual(values=plasma(5)) + 
+  scale_fill_manual(values=plasma(5)) +
+  scale_y_continuous(labels = scales::percent) +
+  theme(legend.position = "none")
+
+lysis_raincloud + facet_wrap(~starting_ind)
 ```
 
 Chance of induction
 ```{r}
-inductionchances_plot <- ggplot(data=inductionchances,
+inductionchances_plot <- ggplot(data=ind_inductionchances,
                             aes(x=update, y=mean_inductionchance,
                                 group=PLR, color=PLR)) +
   ylab("Mean chance of induction") + xlab("Updates") + 
@@ -202,41 +295,90 @@ inductionchances_plot <- ggplot(data=inductionchances,
                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
   theme(panel.background = element_rect(fill='white', colour='black')) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(inductionchances$PLR))) + 
-  scale_fill_manual(values=viridis(nlevels(inductionchances$PLR)))
+  guides(fill="none") + scale_colour_manual(values=plasma(nlevels(ind_inductionchances$PLR)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(ind_inductionchances$PLR)+2))
 
 inductionchances_plot + facet_wrap(~COI)
+```
+
+Chance of induction - boxplot
+```{r}
+inductionchances_boxplot <- ggplot(data = ind_final_inductionchances,
+                                   aes(y=mean_inductionchance,
+                                       group=PLR, color=PLR)) +
+  geom_boxplot() + facet_wrap(~COI) + ylab("Mean chance of induction") + 
+  theme(panel.background = element_rect(fill='white', colour='black')) +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  guides(fill="none") + theme(axis.ticks.x = element_blank()) +
+  scale_colour_manual(values=plasma(nlevels(ind_final_inductionchances$PLR)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(ind_final_inductionchances$PLR)+2))
+
+inductionchances_boxplot
+```
+
+Chance of induction - raincloud plot
+```{r}
+ind_final_inductionchances2 <- ind_final_inductionchances %>%
+  mutate(starting_ind = as.factor(ifelse(COI == "0",
+                                         "Induction Chance 0%",
+                                         "Induction Chance 10%")))
+
+induction_raincloud <- ggplot(data = ind_final_inductionchances2, 
+                              aes(x = PLR, y = mean_inductionchance,
+                                  group=PLR, color=PLR)) + 
+  geom_boxplot(
+    width = .25, 
+    outlier.shape = NA
+  ) +
+  geom_point(
+    size = 1.3,
+    alpha = .3,
+    position = position_jitter(
+      seed = 1, width = .1
+    )
+  ) + 
+  coord_cartesian(xlim = c(1.2, NA), clip = "off") +
+  ylab("Mean Chance of Induction") + xlab("Prophage Loss Rate") +
+  theme(panel.background = element_rect(fill='white', colour='black')) +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  guides(fill="none") +
+  scale_colour_manual(values=plasma(5)) + 
+  scale_fill_manual(values=plasma(5)) +
+  scale_y_continuous(labels = scales::percent) +
+  theme(legend.position = "none")
+
+induction_raincloud + facet_wrap(~starting_ind)
 ```
 
 ### Stacked Histograms
 
 Chance of lysis stacked histogram
 ```{r}
-lysischance_stackedhistogram <- ggplot(lysis_histdata, 
+lysischance_stackedhistogram <- ggplot(ind_lysis_histdata, 
                                        aes(update, count)) + 
   geom_area(aes(fill=Histogram_bins), position='stack') +
   ylab("Count of Phage with Phenotype") + xlab("Evolutionary time (in updates)") +
-  scale_fill_manual("Chance of Lysis\n Phenotypes",values=viridis(nlevels(lysis_histdata$Histogram_bins))) +
+  scale_fill_manual("Chance of Lysis\n Phenotypes",values=plasma(nlevels(ind_lysis_histdata$Histogram_bins)+2)) +
   facet_wrap(~treatment) + 
   theme(panel.background = element_rect(fill='light grey', colour='black')) + 
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + 
-  guides(fill=FALSE) + guides(fill = guide_legend())
+  guides(fill="none") + guides(fill = guide_legend())
 
 lysischance_stackedhistogram
 ```
 
 Chance of induction stacked histogram
 ```{r}
-inductionchance_stackedhistogram <- ggplot(induction_histdata, 
+inductionchance_stackedhistogram <- ggplot(ind_induction_histdata, 
                                        aes(update, count)) + 
   geom_area(aes(fill=Histogram_bins), position='stack') +
   ylab("Count of Phage with Phenotype") + xlab("Evolutionary time (in updates)") +
   scale_fill_manual("Chance of Induction\n Phenotypes",
-                    values=viridis(nlevels(induction_histdata$Histogram_bins))) +
+                    values=plasma(nlevels(ind_induction_histdata$Histogram_bins)+2)) +
   facet_wrap(~treatment) + 
   theme(panel.background = element_rect(fill='light grey', colour='black')) + 
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + 
-  guides(fill=FALSE) + guides(fill = guide_legend())
+  guides(fill="none") + guides(fill = guide_legend())
 
 inductionchance_stackedhistogram
 ```

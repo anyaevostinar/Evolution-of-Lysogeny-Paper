@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: inline
+---
 # Prophage Loss Rate Parameter Sweep
 The following includes the R scripts that we used to generate our graphs for the data where there we did a parameter sweep on the Prophage Loss Rate to determine which values to use in the remainder of our experiments. There was no induction and no direct benefit for hosts with lysogenic phage.
 
@@ -5,8 +10,8 @@ The following includes the R scripts that we used to generate our graphs for the
 
 General settings
 ```{r}
-folder <- "Data/PLR_parameter_sweep/" #Folder where datafiles are 
-treatments <- c("PLR") #Names of the treatments being tested - should match what is in filenames
+plr_folder <- "Data/PLR_parameter_sweep/" #Folder where datafiles are 
+plr_treatments <- c("PLR") #Names of the treatments being tested - should match what is in filenames
 ```
 
 Stacked histogram settings
@@ -30,34 +35,62 @@ lysis_histogram_bins <- c(Hist_0.0 = "0 to 0.2 (Highly lysogenic)",
 
 Gather filenames
 ```{r}
-all_filenames <- list.files(folder)
+plr_all_filenames <- list.files(plr_folder)
 
-freeliving_filenames <- str_subset(all_filenames, "FreeLivingSyms")
-hostval_filenames <- str_subset(all_filenames, "HostVals")
-lysischance_filenames <- str_subset(all_filenames, "LysisChance")
-phagevals_filenames <- str_subset(all_filenames, "SymVals")
+plr_freeliving_filenames <- str_subset(plr_all_filenames, "FreeLivingSyms")
+plr_hostval_filenames <- str_subset(plr_all_filenames, "HostVals")
+plr_lysischance_filenames <- str_subset(plr_all_filenames, "LysisChance")
+plr_phagevals_filenames <- str_subset(plr_all_filenames, "SymVals")
 ```
 
 Combine time series data for all subsets of datafiles
 ```{r, results='hide', message=FALSE}
-freeliving <- combine_time_data(freeliving_filenames, folder, treatments)
-hostvals <- combine_time_data(hostval_filenames, folder, treatments)
-lysischances <- combine_time_data(lysischance_filenames, folder, treatments)
-phagevals <- combine_time_data(phagevals_filenames, folder, treatments)
+plr_freeliving <- combine_time_data(plr_freeliving_filenames, plr_folder, plr_treatments)
+plr_hostvals <- combine_time_data(plr_hostval_filenames, plr_folder, plr_treatments)
+plr_lysischances <- combine_time_data(plr_lysischance_filenames, plr_folder, plr_treatments)
+plr_phagevals <- combine_time_data(plr_phagevals_filenames, plr_folder, plr_treatments)
 ```
 
 Rearrange time series data into stacked histogram data
 ```{r}
-lysis_histdata <- combine_histogram_data(lysischances, 
+plr_lysis_histdata <- combine_histogram_data(plr_lysischances, 
                                          lysis_separate_by, 
                                          lysis_histogram_bins)
+```
+
+Extract information about average genome values at the end of the runs
+```{r}
+plr_final_freeliving <- last_update(plr_freeliving)
+plr_final_hostvals <- last_update(plr_hostvals)
+plr_final_lysischances <- last_update(plr_lysischances)
+plr_final_phagevals <- last_update(plr_phagevals)
+```
+
+## Analyze Data
+### Summary Stats
+```{r}
+plr_lysis_summary_stats <- plr_final_lysischances %>%
+  group_by(PLR) %>%
+  summarise(final_chance_of_lysis = mean(mean_lysischance))
+
+plr_lysis_summary_stats
+```
+### Wilcox tests
+
+Compare PLR of 0 to PLR 5
+```{r}
+bonferroni <- 8
+plr_PLR0 <- subset(plr_final_lysischances, PLR == "0")
+plr_PLR0.05 <- subset(plr_final_lysischances, PLR == "0.05")
+
+wilcox.test(plr_PLR0$mean_lysischance, plr_PLR0.05$mean_lysischance)$p.value * bonferroni
 ```
 
 ## Generate Graphs
 ### Host graphs
 Host count
 ```{r}
-hostcount_plot <- ggplot(data=hostvals,
+hostcount_plot <- ggplot(data=plr_hostvals,
                          aes(x=update, y=count, 
                              group=PLR, colour=PLR)) + 
   ylab("Host Count") + xlab("Updates") + 
@@ -65,53 +98,53 @@ hostcount_plot <- ggplot(data=hostvals,
                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
   theme(panel.background = element_rect(fill='white', colour='black')) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(hostvals$PLR))) + 
-  scale_fill_manual(values=viridis(nlevels(hostvals$PLR)))
+  guides(fill="none") + scale_colour_manual(values=plasma(nlevels(plr_hostvals$PLR)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(plr_hostvals$PLR)+2))
 
 hostcount_plot
 ```
 
 Host cfu count
 ```{r}
-hostcount_cfu_plot <- ggplot(data=hostvals, aes(x=update, y=cfu_count, 
+hostcount_cfu_plot <- ggplot(data=plr_hostvals, aes(x=update, y=cfu_count, 
                                                 group=PLR, colour=PLR)) + 
   ylab("Host CFU Count") + xlab("Updates") + 
   stat_summary(aes(color=PLR, fill=PLR),
                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
   theme(panel.background = element_rect(fill='white', colour='black')) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(hostvals$PLR))) + 
-  scale_fill_manual(values=viridis(nlevels(hostvals$PLR)))
+  guides(fill="none") + scale_colour_manual(values=plasma(nlevels(plr_hostvals$PLR)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(plr_hostvals$PLR)+2))
 
 hostcount_cfu_plot
 ```
 
 Host uninfected count
 ```{r}
-host_uninfected_plot <- ggplot(data=hostvals, aes(x=update, y=uninfected_host_count, 
+host_uninfected_plot <- ggplot(data=plr_hostvals, aes(x=update, y=uninfected_host_count, 
                                                   group=PLR, colour=PLR)) + 
   ylab("Uninfected Host Count") + xlab("Updates") + 
   stat_summary(aes(color=PLR, fill=PLR),
                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
   theme(panel.background = element_rect(fill='white', colour='black')) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(hostvals$PLR))) + 
-  scale_fill_manual(values=viridis(nlevels(hostvals$PLR)))
+  guides(fill="none") + scale_colour_manual(values=plasma(nlevels(plr_hostvals$PLR)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(plr_hostvals$PLR)+2))
 
 host_uninfected_plot
 ```
 
 Host int vals
 ```{r}
-hostvals_plot <- ggplot(data=hostvals, aes(x=update, y=mean_intval, 
+hostvals_plot <- ggplot(data=plr_hostvals, aes(x=update, y=mean_intval, 
                                            group=PLR, colour=PLR)) + 
   ylab("Mean Host Interaction Value") + xlab("Updates") + 
   stat_summary(aes(color=PLR, fill=PLR),
                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
   theme(panel.background = element_rect(fill='white', colour='black')) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(hostvals$PLR))) + 
-  scale_fill_manual(values=viridis(nlevels(hostvals$PLR)))
+  guides(fill="none") + scale_colour_manual(values=plasma(nlevels(plr_hostvals$PLR)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(plr_hostvals$PLR)+2))
 
 hostvals_plot
 ```
@@ -120,7 +153,7 @@ hostvals_plot
 
 Phage count
 ```{r}
-phagecount_plot <- ggplot(data=lysischances,
+phagecount_plot <- ggplot(data=plr_lysischances,
                           aes(x=update, y=count,
                               group=PLR, color=PLR)) +
   ylab("Phage count") + xlab("Updates") + 
@@ -128,30 +161,30 @@ phagecount_plot <- ggplot(data=lysischances,
                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
   theme(panel.background = element_rect(fill='white', colour='black')) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(lysischances$PLR))) + 
-  scale_fill_manual(values=viridis(nlevels(lysischances$PLR)))
+  guides(fill="none") + scale_colour_manual(values=plasma(nlevels(plr_lysischances$PLR)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(plr_lysischances$PLR)+2))
 
 phagecount_plot
 ```
 
 Phage int val
 ```{r}
-phageintval_plot <- ggplot(data=phagevals, aes(x=update, y=mean_intval,
+phageintval_plot <- ggplot(data=plr_phagevals, aes(x=update, y=mean_intval,
                                                group=PLR, color=PLR)) +
   ylab("Phage Interaction value") + xlab("Updates") + 
   stat_summary(aes(color=PLR, fill=PLR),
                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
   theme(panel.background = element_rect(fill='white', colour='black')) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  guides(fill=FALSE) + scale_colour_manual(values=viridis(nlevels(phagevals$PLR))) + 
-  scale_fill_manual(values=viridis(nlevels(phagevals$PLR)))
+  guides(fill="none") + scale_colour_manual(values=plasma(nlevels(plr_phagevals$PLR)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(plr_phagevals$PLR)+2))
 
 phageintval_plot
 ```
 
 Chance of lysis
 ```{r}
-lysischances_plot <- ggplot(data=lysischances,
+lysischances_plot <- ggplot(data=plr_lysischances,
                             aes(x=update, y=mean_lysischance,
                                 group=PLR, color=PLR)) +
   ylab("Mean Chance of Lysis") + xlab("Evolutionary Time (Updates)") + 
@@ -159,11 +192,43 @@ lysischances_plot <- ggplot(data=lysischances,
                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) + 
   theme(panel.background = element_rect(fill='white', colour='black')) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  guides(fill=FALSE) + 
-  scale_colour_manual(values=viridis(nlevels(lysischances$PLR))) + 
-  scale_fill_manual(values=viridis(nlevels(lysischances$PLR)))
+  guides(fill="none") + 
+  scale_colour_manual(values=plasma(nlevels(plr_lysischances$PLR)+2)) + 
+  scale_fill_manual(values=plasma(nlevels(plr_lysischances$PLR)+2))
 
 lysischances_plot
+```
+
+Chance of lysis boxplot
+```{r}
+plr_final_lysischances2 <- plr_final_lysischances %>%
+  filter(PLR %in% c("0", "0.025", "0.05"))
+
+lysis_boxplot <- ggplot(data = plr_final_lysischances2, 
+                              aes(x = PLR, y = mean_lysischance,
+                                  group=PLR, color=PLR)) + 
+  geom_boxplot(
+    width = .25, 
+    outlier.shape = NA
+  ) +
+  geom_point(
+    size = 1.3,
+    alpha = .3,
+    position = position_jitter(
+      seed = 1, width = .1
+    )
+  ) + 
+  coord_cartesian(xlim = c(1.2, NA), clip = "off") +
+  ylab("Mean Chance of Lysis") + xlab("Prophage Loss Rate") +
+  theme(panel.background = element_rect(fill='white', colour='black')) +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  guides(fill="none") +
+  scale_colour_manual(values=plasma(5)) + 
+  scale_fill_manual(values=plasma(5)) +
+  scale_y_continuous(labels = scales::percent) +
+  theme(legend.position = "none")
+
+lysis_boxplot
 ```
 
 
@@ -171,15 +236,15 @@ lysischances_plot
 
 Chance of lysis stacked histogram
 ```{r}
-lysischance_stackedhistogram <- ggplot(lysis_histdata, 
+lysischance_stackedhistogram <- ggplot(plr_lysis_histdata, 
                                        aes(update, count)) + 
   geom_area(aes(fill=Histogram_bins), position='stack') +
   ylab("Count of Phage with Phenotype") + xlab("Evolutionary time (in updates)") +
-  scale_fill_manual("Chance of Lysis\n Phenotypes",values=viridis(nlevels(lysis_histdata$Histogram_bins))) +
+  scale_fill_manual("Chance of Lysis\n Phenotypes",values=plasma(nlevels(plr_lysis_histdata$Histogram_bins)+2)) +
   facet_wrap(~treatment) + 
   theme(panel.background = element_rect(fill='light grey', colour='black')) + 
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + 
-  guides(fill=FALSE) + guides(fill = guide_legend())
+  guides(fill="none") + guides(fill = guide_legend())
 
 lysischance_stackedhistogram
 ```

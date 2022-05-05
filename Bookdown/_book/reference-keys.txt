@@ -8,6 +8,7 @@ results
 data-availability
 source-code
 experimental-results
+summary-table-of-numerical-results
 configuration-settings
 experimental-settings
 other-relevant-settings
@@ -15,12 +16,17 @@ template-for-munging-data-and-creating-graphs
 load-data-munging-functions
 gather-settings-and-treatments
 collect-and-munge-data
+analyze-data
+summary-stats
 create-graphs
 graph-templates
 examples
 prophage-loss-rate-parameter-sweep
 gather-settings-and-treatments-1
 collect-and-munge-data-1
+analyze-data-1
+summary-stats-1
+wilcox-tests
 generate-graphs
 host-graphs
 phage-graphs
@@ -28,6 +34,9 @@ stacked-histograms
 benefit-only---induction-off
 gather-settings-and-treatments-2
 collect-and-munge-data-2
+analyze-data-2
+summary-statistics
+wilcox-tests-1
 generate-graphs-1
 host-graphs-1
 phage-graphs-1
@@ -35,6 +44,9 @@ stacked-histograms-1
 induction-only---benefit-off
 gather-settings-and-treatments-3
 collect-and-munge-data-3
+analyze-data-3
+summary-stats-2
+wilcox-tests-2
 generate-graphs-2
 host-graphs-2
 phage-graphs-2

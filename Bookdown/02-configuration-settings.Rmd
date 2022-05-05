@@ -13,6 +13,12 @@ BENEFIT_TO_HOST is a switch that allows lysogenic phage to interact with their h
 
 PHAGE_INC_VAL interacts with the HOST_INC_VAL to determine how well the bacteriophage and host bacterium are a match for each other. This is done by computing the difference between the two incorporation values; the smaller the difference, the more helpful a phage is to its host. This is an abstract representation of the insertion of phage DNA into bacterial DNA, and how successful that may be. HOST_INC_VAL was held constant at 1 for all experiments, while the PHAGE_INC_VAL was either 0 (harmful), 0.5 (neutral), or 1 (beneficial).
 
+CHANCE_OF_INDUCTION represents the chance that a lysogenic phage will induce and begin the lytic cycle. While this chance is an integral part of the biological system, it is so small that it is close to neglible. As such, we start all phage with a 0% chance of induction while allowing it to mutate in some experiments in order to observe how it evolves.
+
+MUTATE_INDUCTION_CHANCE is a switch that determines whether or not the chance of induction will mutate for phage offspring. This switch is turned on for some of our experiments.
+
+MUTATE_INC_VAL is a switch that determines whether or not the phage and host incorporation values will mutate for both populations. Mutations are turned on for the experiments where we tested the effect of harmful/neutral/beneficial lysogens.
+
 ## Other Relevant Settings
 **The following settings were kept constant for all experiments run for this paper, but these settings differ from the defaults.**
 
@@ -28,21 +34,15 @@ HOST_REPRO_RES represents the number of resource points needed for hosts to repr
 
 LYSIS indicates whether the world will include phage and bacteriums. This switch is turned on for all experiments.
 
-CHANCE_OF_INDUCTION represents the chance that a lysogenic phage will induce and begin the lytic cycle. While this chance is an integral part of the biological system, it is so small that it is close to neglible. As such, we start all phage with a 0% chance of induction while allowing it to mutate in order to observe how it evolves.
-
 MUTATE_LYSIS_CHANCE is a switch that indicates whether or not the chance of lysis for phage offspring should be mutated from their parent's chance of lysis. We permitted lysis chance mutations for all experiments.
 
 SYM_LIMIT indicates how many phage can infect a singular host. We only allow one phage per host and thus use a value of 1.
-
-MUTATE_INDUCTION_CHANCE is a switch that determines whether or not the chance of induction will mutate for phage offspring. This switch is turned on for our experiments.
 
 BURST_TIME acts as a timer that determines how long it takes for a lytic phage to burst. Each lytic phage's burst timer is incremented (from a normal distribution centered at 1 with a standard deviation of 1) every update. Once the phage's burst timer reaches this configuration setting as a threshold, the phage offspring are released into the world and the host bacterium dies. We use a value of 100 for all experiments.
 
 HOST_INC_VAL represents the compatibility of bacterial hosts with lysogenic phage to decide the impact of prophage DNA incorporation on the host metabolism. We keep the HOST_INC_VAL at a value of 1 for all experiments.
 
-MUTATE_INC_VAL is a switch that determines whether or not the phage and host incorporation values will mutate for both populations. Mutations are turned on for all experiments.
-
-SYM_LYSIS_RES represents the amount of resources that a lytic phage requires to reproduce once within the host prior to bursting. Given enough resources, a lytic phage can reproduce multiple times before lysing the host cell.
+SYM_LYSIS_RES represents the amount of resources that a lytic phage requires to reproduce once within the host prior to bursting. Given enough resources, a lytic phage can reproduce multiple times before lysing the host cell. We set this value to 10 resource points for all experiments.
 
 START_MOI represents the initial ratio of the symbiont population to the bacteria population. During experimentation we set the START_MOI to 0.5 and let the population grow to a multiplicity of infection ratio of 1.
 
