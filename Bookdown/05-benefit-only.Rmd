@@ -106,7 +106,7 @@ pro_incvals_summary_stats
 ### Wilcox tests
 PLR of 5% - compare dormant phage to harmful phage
 ```{r}
-noInd_PLR5 <- subset(pro_final_lysischances, PLR == "0.05")
+noInd_PLR5 <- subset(plr_final_lysischances, PLR == "0.05")
 pro_PLR5_PIV0 <- subset(subset(pro_final_lysischances, PLR == "0.05"), PIV == "0")
 
 wilcox.test(noInd_PLR5$mean_lysischance, pro_PLR5_PIV0$mean_lysischance)$p.value * bonferroni
@@ -114,7 +114,7 @@ wilcox.test(noInd_PLR5$mean_lysischance, pro_PLR5_PIV0$mean_lysischance)$p.value
 
 PLR of 2.5% - compare dormant phage to harmful phage
 ```{r}
-noInd_PLR2.5 <- subset(pro_final_lysischances, PLR == "0.025")
+noInd_PLR2.5 <- subset(plr_final_lysischances, PLR == "0.025")
 pro_PLR2.5_PIV0 <- subset(subset(pro_final_lysischances, PLR == "0.025"), PIV == "0")
 
 wilcox.test(noInd_PLR2.5$mean_lysischance, pro_PLR2.5_PIV0$mean_lysischance)$p.value * bonferroni

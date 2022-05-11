@@ -121,7 +121,7 @@ wilcox.test(ind_PLR0$mean_inductionchance, ind_PLR0.05$mean_inductionchance)$p.v
 
 Compare Chance of Lysis for PLR 2.5% across all levels of induction
 ```{r}
-noInd_PLR2.5 <- subset(ind_final_lysischances, PLR == "0.025")
+noInd_PLR2.5 <- subset(plr_final_lysischances, PLR == "0.025")
 ind_PLR2.5_COI0.0 <- subset(subset(ind_final_lysischances, PLR == "0.025"), COI == "0")
 ind_PLR2.5_COI0.1 <- subset(subset(ind_final_lysischances, PLR == "0.025"), COI == "0.1")
 
@@ -131,7 +131,7 @@ wilcox.test(noInd_PLR2.5$mean_lysischance, ind_PLR2.5_COI0.1$mean_lysischance)$p
 
 Compare Chance of Lysis for PLR 5% across all levels of induction
 ```{r}
-noInd_PLR5 <- subset(ind_final_lysischances, PLR == "0.05")
+noInd_PLR5 <- subset(plr_final_lysischances, PLR == "0.05")
 ind_PLR5_COI0.0 <- subset(subset(ind_final_lysischances, PLR == "0.05"), COI == "0")
 ind_PLR5_COI0.1 <- subset(subset(ind_final_lysischances, PLR == "0.05"), COI == "0.1")
 
